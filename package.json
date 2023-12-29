@@ -1,0 +1,10 @@
+{
+  "name": "editorplus",
+  "version": "1.0.0",
+  "description": "WYSIWYG Editor for Piwigo.",
+  "author": "Piwigo team",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "quill": "^2.0.0-beta.0"
+  }
+}

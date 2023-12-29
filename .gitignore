@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/*
+!node_modules/quill
+node_modules/quill/*
+!node_modules/quill/dist
+
+# Config and OS files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node.js
+npm-debug.log
+yarn-error.log
