@@ -21,7 +21,7 @@ include(EP_PATH . 'admin/' . $page['tab'] . '.php');
 // Send page contet
 $template->assign(array(
     'EP_PATH' => EP_PATH,
-    'EP_REALPATH' => realpath(EP_PATH),
+    'EP_REALPATH' => EP_REALPATH,
     'EP_ADMIN' => EP_ADMIN
 ));
 $template->assign_var_from_handle('ADMIN_CONTENT', 'editorplus_content');

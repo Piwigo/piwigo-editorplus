@@ -5,7 +5,7 @@ Plugin Name: EditorPlus
 Plugin URI: github link
 Author: Piwigo team
 Author URI: https://github.com/Piwigo
-Description: WYSIWYG Editor for Piwigo. Using Quill.
+Description: WYSIWYG Editor for Piwigo. Using Quill v2 beta.
 */
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
@@ -20,21 +20,21 @@ define('EP_REALPATH', realpath(EP_PATH));
 define('EP_ADMIN', get_root_url() . 'admin.php?page=plugin-' . EP_ID);
 
 // +-----------------------------------------------------------------------+
-// | Add event handlers                                                    |
+// | Init EditorPlus                                                       |
 // +-----------------------------------------------------------------------+
 
-// init
-// init here
+// Include once admin function
+include_once(EP_PATH . 'include/admin.inc.php');
 
+// init
+add_event_handler('init', 'ep_init');
 
 if (defined('IN_ADMIN'))
 {
-    // admin handlers functions 
-    $admin_file = EP_PATH . 'include/admin.inc.php';
+    // Add admin menu link
+    add_event_handler('get_admin_plugin_menu_links', 'ep_admin_menu');
 
-    // admin menu link
-    add_event_handler('get_admin_plugin_menu_links', 'admin_menu', EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
-
+    // Include EditorPlus
+    include(EP_PATH . 'editorplus.php');
 }
-
 ?>

@@ -1,0 +1,21 @@
+/* Common CSS */
+h3, p {
+    margin: 0 !important;
+}
+
+/* General CSS */
+.ep-container {
+    margin: 20px;
+}
+.ep-config {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Display CSS */
+.quill-content {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+}
