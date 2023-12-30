@@ -77,7 +77,7 @@ $(document).ready(function () {
         // This is the most part of our script, we load the editor
         if (textarea.length > 0 && textarea.is('textarea')) {
             console.log(textarea);
-            // On the album page, we remove the extand button from the description to leave the EditorPlus one
+            // On the album page, we remove the expand button from the description to leave the EditorPlus one
             if (EP_CURRENT_PAGE == 'album') { $('#desc-zoom-square').css('display', 'none'); }
 
             // Define iframe const
@@ -93,7 +93,7 @@ $(document).ready(function () {
 
             // Fill iframe
             const iframe = $('#' + quill_iframe_id).get(0);
-            const iframe_quill = iframe.contentDocument || iframe.contentWindow.document;
+            const iframe_quill = iframe.contentDocument || iframe.contentWindow.document; // For older browsers because they don't support "iframe.contentDocument".
             const iframe_content = example_quill_iframe.replace(/%EDITOR_ID%/g, quill_id).replace(/%EP_PATH%/g, EP_PATH);
 
             iframe_quill.open();
@@ -104,10 +104,11 @@ $(document).ready(function () {
             // because Safari handles onload differently.
             // Safari loads the editor only once and on only one page per session.
             window.addEventListener('message', function (event) {
-                if (event.origin !== window.location.origin) return;
-                if (event.data.type === 'iframeLoaded_' + quill_id) {
+                if (event.origin !== window.location.origin) return; // For security we check if the iframe have the same origin as piwigo server
+                if (event.data.type === 'iframeLoaded_' + quill_id) { // This is generate in iframe template
                     const Quill = iframe.contentWindow.Quill;
     
+                    // We need inline style and not Quill CSS Class
                     const alignClass = Quill.import('attributors/style/align');
                     const backgroundClass = Quill.import('attributors/style/background');
                     const colorClass = Quill.import('attributors/style/color');
@@ -121,13 +122,15 @@ $(document).ready(function () {
                     Quill.register(fontClass, true);
                     Quill.register(SizeClass, true);
     
-                    const quill = new Quill(iframe_quill.getElementById(quill_id), {
+                    // Init Quill
+                    const quill = new Quill(iframe_quill.getElementById(quill_id), { // we use getElementById because for quill its better
                         modules: {
                             toolbar: toolbarOptions,
                         },
                         theme: 'snow',
                     });
     
+                    // Add expand/shrink button and resize toolbar
                     const i_quill = $(iframe_quill);
                     const toolbar = i_quill.find('.ql-toolbar');
                     const iframe_ep_content = i_quill.find('.ep-content');
@@ -137,6 +140,7 @@ $(document).ready(function () {
                     const toolbar_height = toolbar.innerHeight() + 2;
                     iframe_ep_content.css('height', 'calc(100% - ' + toolbar_height + 'px)');
     
+                    // Script for expand/shrink button
                     toolbar.find('.ep-icon').on('click', function() {
                         if($(this).data('modal') == 'inactive') {
                             $('#container-' + quill_iframe_id).addClass('ep-modal-content');
@@ -150,14 +154,16 @@ $(document).ready(function () {
                             $(this).removeClass('icon-resize-small');
                             $(this).addClass('icon-resize-full');
                             $(this).data('modal', 'inactive');
-                        }
-                        
+                        } 
                     });
     
-                    quill.clipboard.dangerouslyPasteHTML(textarea.val());
+                    // Quill and textarea value
+                    quill.clipboard.dangerouslyPasteHTML(textarea.val()); // Fill editor content with textarea value
+                    // On editor text change we fill the textarea with editor content
                     quill.on('text-change', function () {
                         textarea.val(quill.root.innerHTML);
                     });
+                    // On textarea text change we fill the editor with textarea value
                     textarea.on('change', function() {
                         quill.clipboard.dangerouslyPasteHTML(textarea.val());
                         console.log('je passe ici');
