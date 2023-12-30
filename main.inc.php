@@ -6,6 +6,7 @@ Plugin URI: github link
 Author: Piwigo team
 Author URI: https://github.com/Piwigo
 Description: WYSIWYG Editor for Piwigo. Using Quill v2 beta.
+Has Settings: true
 */
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
@@ -29,12 +30,7 @@ include_once(EP_PATH . 'include/admin.inc.php');
 // init
 add_event_handler('init', 'ep_init');
 
-if (defined('IN_ADMIN'))
-{
-    // Add admin menu link
-    add_event_handler('get_admin_plugin_menu_links', 'ep_admin_menu');
-
+if (defined('IN_ADMIN')) {
     // Include EditorPlus
     include(EP_PATH . 'editorplus.php');
 }
-?>
