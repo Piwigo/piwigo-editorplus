@@ -69,6 +69,8 @@ function ep_load_editor()
             break;
 
         case 'plugin':
+            // If we dont have `$_GET['section']` we cannot load the editor 
+            if (!isset($_GET['section'])) break;
             switch ($_GET['section']) 
             {
                 // Define `EditorPlus` plugin
