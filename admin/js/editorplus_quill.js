@@ -119,7 +119,10 @@ function create_iframe_quill(textarea) {
         const unique_iframe = new Date().getTime();  // Each time the page is loaded, we assign a new id to the iframe. This trick allows Safari not to cache the iframe (which causes problems).
         const quill_iframe_id = quill_id + '-iframe' + unique_iframe;
         const textarea_height = textarea.innerHeight() + 150; // + 150 is a good size for editor content
-        const quill_iframe = example_quill_container.replace(/%CONTAINER_ID%/g, 'container-' + quill_iframe_id).replace(/%QUILL_IFRAME_ID%/g, quill_iframe_id).replace(/%TEXTAREA_HEIGHT%/g, textarea_height + 'px');
+        const quill_iframe = example_quill_container
+        .replace(/%CONTAINER_ID%/g, 'container-' + quill_iframe_id)
+        .replace(/%QUILL_IFRAME_ID%/g, quill_iframe_id)
+        .replace(/%TEXTAREA_HEIGHT%/g, textarea_height + 'px');
 
         // Hide textarea and display our editor
         textarea.hide();
@@ -128,7 +131,9 @@ function create_iframe_quill(textarea) {
         // Define iframe content constante
         const iframe = $('#' + quill_iframe_id).get(0);
         const iframe_dom = iframe.contentDocument || iframe.contentWindow.document; // For older browsers because they don't support "iframe.contentDocument".
-        const iframe_content = example_quill_iframe.replace(/%EDITOR_ID%/g, quill_id).replace(/%EP_PATH%/g, EP_PATH);
+        const iframe_content = example_quill_iframe
+        .replace(/%EDITOR_ID%/g, quill_id)
+        .replace(/%EP_PATH%/g, EP_PATH);
 
         // Fill iframe content
         iframe_dom.open();
@@ -138,7 +143,6 @@ function create_iframe_quill(textarea) {
         // Return quill_id and Quill
         return {
             quill_id: quill_id,
-            Quill: iframe.contentWindow.Quill,
             iframe_dom: iframe_dom,
             quill: $(iframe_dom),
             iframe_id: quill_iframe_id,
@@ -262,7 +266,8 @@ $(document).ready(function () {
                 // Iframe onload
                 if (e.data.type === 'iframeLoaded_' + iframe.quill_id) { // This is generate in example_quill_iframe
                     // Init and load quill
-                    const quill = load_quill(iframe.Quill, iframe.iframe_dom, iframe.quill_id, iframe.quill);
+                    const loaded_quill = $('#' + iframe.iframe_id).get(0).contentWindow.Quill;
+                    const quill = load_quill(loaded_quill, iframe.iframe_dom, iframe.quill_id, iframe.quill);
 
                     // Fill quill editor with textarea value
                     quill.Quill.clipboard.dangerouslyPasteHTML(textarea.val());
