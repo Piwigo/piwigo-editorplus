@@ -235,6 +235,11 @@ function close_quill_modal(quill_iframe_id, expand_button) {
     }
 }
 
+/**
+ * `EditorPlus - Quill` : Toggle Toolbar
+ */
+
+
 // +-----------------------------------------------------------------------+
 // | Display script                                                        |
 // +-----------------------------------------------------------------------+
