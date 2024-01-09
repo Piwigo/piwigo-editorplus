@@ -16,15 +16,21 @@
 // +-----------------------------------------------------------------------+
 // Toolbar options
 const fontSizeArr = [false, '8px', '9px', '10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '42px', '54px', '68px', '84px', '98px'];
-const toolbarOptions = [
+const toolbarOptionFull = [
     ['bold', 'italic', 'underline', 'strike'],
-    [{ 'align': [] }],
-    [{ 'color': [] }, { 'background': [] }],
+    ['blockquote', 'code-block'],
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+    [{ 'script': 'sub' }, { 'script': 'super' }],
+    [{ 'indent': '-1' }, { 'indent': '+1' }],
+    [{ 'direction': 'rtl' }],
+    [{ 'size': fontSizeArr}],
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    [{ 'size': fontSizeArr }],
+    [{ 'color': [] }, { 'background': [] }],
     [{ 'font': [] }],
-    ['link', 'image', 'video', 'blockquote'],
-    ['clean'],
+    [{ 'align': [] }],
+    ['link', 'image', 'video'],
+    ['clean']
 ];
 
 // Editor container template
@@ -181,7 +187,7 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         // Quill initialization
         const quill_init = new Quill(iframe_dom.getElementById(quill_id), { // we use getElementById because for quill its better
             modules: {
-                toolbar: toolbarOptions,
+                toolbar: toolbarOptionFull,
             },
             theme: 'snow',
         });
@@ -238,7 +244,60 @@ function close_quill_modal(quill_iframe_id, expand_button) {
 /**
  * `EditorPlus - Quill` : Toggle Toolbar
  */
+function toggle_toolbar() {
 
+}
+
+/**
+ * `EditorPlus - Quill` : Convert quill class to inline style
+ * @param {*} text raw quill root content
+ * @returns convert quill content
+ */
+function convert_quill(text) {
+    // Convert class 'ql-indent-*' to inline style
+    $(text).find('[class^="ql-indent-"]').each(function() {
+        const e = $(this);
+        const c = e[0].className;
+        const i = c.match(/\d+$/)[0];
+        e.removeClass(c);
+        // e.removeAttr('class');
+        e.css('padding-left', i*3 + 'em');
+    });
+    // Convert class 'ql-code-block-container' to inline style
+    $(text).find('.ql-code-block-container').each(function() {
+        const e = $(this);
+        const c = e[0].className;
+        e.css({
+            'background-color' : '#23241f',
+            'color' : '#f8f8f2',
+            'overflow' : 'visible',
+            'margin-bottom' : '5px',
+            'margin-top' : '5px',
+            'padding' : '5px 10px',
+            'border-radius' : '3px',
+            'font-family' : 'monospace',
+            'position' : 'relative',
+        });
+        e.removeClass(c);
+        e.find('.ql-code-block').removeClass('ql-code-block');
+    });
+    // Convert class 'ql-ui' to inline style
+    $(text).find('.ql-ui').each(function() {
+        const e = $(this);
+        e.remove();
+    });
+    // Convert class 'ql-video' to inline style
+    $(text).find('.ql-video').each(function() {
+        const e = $(this);
+        e.removeClass('ql-video');
+        e.css({
+            'display' : 'block',
+            'max-width' : '100%'
+        });
+    });
+
+    return text;
+}
 
 // +-----------------------------------------------------------------------+
 // | Display script                                                        |
@@ -277,7 +336,7 @@ $(document).ready(function () {
                     // Fill quill editor with textarea value
                     quill.Quill.clipboard.dangerouslyPasteHTML(textarea.val());
 
-                    // addEventLister
+                    // addEventListener
                     // Show/Hide quill modal
                     quill.expand.on('click', function () {
                         if (quill.expand.data('modal') == 'inactive') {
@@ -294,11 +353,26 @@ $(document).ready(function () {
                     });
                     // On quill text-change we put his value in textarea
                     quill.Quill.on('text-change', function () {
+                        console.log(quill.Quill.root.innerHTML);
                         textarea.val(quill.Quill.root.innerHTML);
                     });
                     // On textarea text change we fill the editor with textarea value
                     textarea.on('change', function () {
                         quill.Quill.clipboard.dangerouslyPasteHTML(textarea.val());
+                    });
+                    // Convert Quill Css Class to inline style with Juice
+                    if (EP_SAVE && EP_SAVE.type == 'submit') {
+                        console.log('je suis save par un submit');
+
+                    } else {
+                        console.log('je suis sois un appel ajax ou je nai pas de save');
+                    }
+                    // result button for playground !!!! transform this for preview in toolbar
+                    $('#result_button').on('click', function () {
+                        const quill_content = quill.Quill.root.cloneNode(true);
+                        const cq = convert_quill(quill_content);
+                        console.log(cq);
+                        $('#result_ep').html(cq.innerHTML);
                     });
 
                 }
