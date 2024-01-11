@@ -1,4 +1,7 @@
-.ep-modal-content {
+/* QUILL CSS */
+
+/* Modal CSS */
+.quill-modal-content {
     display: block;
     position: fixed;
     z-index: 100;
@@ -10,7 +13,7 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-.ep-modal-iframe {
+.quill-modal-iframe {
   position: absolute;
   border-radius: 10px;
   background-color: white;
@@ -21,4 +24,46 @@
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+/* Configuration CSS */
+.config-quill {
+  display: none;
+}
+.config-quill-container {
+  margin: auto;
+}
+.config-quill-icon-long {
+  margin-right: 20px;
+}
+.config-quill-badge {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 0 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.config-quill-toolbar {
+  max-width: 800px;
+  margin: auto;
+  border: 1px dashed #ccc;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.config-quill-toolbar .expand {
+  font-size: 18px;
+  padding: 0 5px;
+  color: black;
+}
+.config-quill-fulltoolbar {
+  margin: 20px 0 10px 0;
+}
+#dragzone {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  padding-left: 5px;
 }

@@ -33,6 +33,30 @@ const toolbarOptionFull = [
     ['clean']
 ];
 
+const toolbarOption = [
+    ['bold'],
+    ['italic'],
+    ['underline'],
+    ['strike'],
+    ['blockquote'],
+    ['code-block'],
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+    [{ 'script': 'sub' }, { 'script': 'super' }],
+    [{ 'indent': '-1' }, { 'indent': '+1' }],
+    [{ 'direction': 'rtl' }],
+    [{ 'size': fontSizeArr}],
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    [{ 'color': [] }],
+    [{ 'background': [] }],
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+    ['link'],
+    ['image'],
+    ['video'],
+    ['clean']
+];
+
 // Editor container template
 const example_quill_container = `
 <div id="%CONTAINER_ID%" style="width:100%">
@@ -187,7 +211,7 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         // Quill initialization
         const quill_init = new Quill(iframe_dom.getElementById(quill_id), { // we use getElementById because for quill its better
             modules: {
-                toolbar: toolbarOptionFull,
+                toolbar: toolbarOption,
             },
             theme: 'snow',
         });
@@ -216,8 +240,8 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
  */
 function show_quill_modal(quill_iframe_id, expand_button) {
     try {
-        $('#container-' + quill_iframe_id).addClass('ep-modal-content');
-        $('#' + quill_iframe_id).addClass('ep-modal-iframe');
+        $('#container-' + quill_iframe_id).addClass('quill-modal-content');
+        $('#' + quill_iframe_id).addClass('quill-modal-iframe');
         expand_button.removeClass('icon-resize-full');
         expand_button.addClass('icon-resize-small');
         expand_button.data('modal', 'active');
@@ -231,8 +255,8 @@ function show_quill_modal(quill_iframe_id, expand_button) {
  */
 function close_quill_modal(quill_iframe_id, expand_button) {
     try {
-        $('#container-' + quill_iframe_id).removeClass('ep-modal-content');
-        $('#' + quill_iframe_id).removeClass('ep-modal-iframe');
+        $('#container-' + quill_iframe_id).removeClass('quill-modal-content');
+        $('#' + quill_iframe_id).removeClass('quill-modal-iframe');
         expand_button.removeClass('icon-resize-small');
         expand_button.addClass('icon-resize-full');
         expand_button.data('modal', 'inactive');

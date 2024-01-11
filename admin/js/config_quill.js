@@ -1,0 +1,1 @@
+console.log('je suis le fichier js qui va recevoir le code save + drag and drop');
