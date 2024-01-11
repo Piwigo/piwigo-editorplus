@@ -5,7 +5,7 @@ Plugin Name: EditorPlus
 Plugin URI: github link
 Author: Piwigo team
 Author URI: https://github.com/Piwigo
-Description: WYSIWYG Editor for Piwigo. Using Quill v2 beta.
+Description: WYSIWYG Editor for Piwigo.
 Has Settings: true
 */
 
