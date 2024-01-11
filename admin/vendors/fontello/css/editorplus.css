@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'editorplus';
+  src: url('../font/editorplus.eot?54025306');
+  src: url('../font/editorplus.eot?54025306#iefix') format('embedded-opentype'),
+       url('../font/editorplus.woff2?54025306') format('woff2'),
+       url('../font/editorplus.woff?54025306') format('woff'),
+       url('../font/editorplus.ttf?54025306') format('truetype'),
+       url('../font/editorplus.svg?54025306#editorplus') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'editorplus';
+    src: url('../font/editorplus.svg?54025306#editorplus') format('svg');
+  }
+}
+*/
+[class^="epicon-"]:before, [class*=" epicon-"]:before {
+  font-family: "editorplus";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.epicon-bold:before { content: '\e800'; } /* '' */
+.epicon-italic:before { content: '\e801'; } /* '' */
+.epicon-underline:before { content: '\e802'; } /* '' */
+.epicon-strike:before { content: '\e803'; } /* '' */
+.epicon-color:before { content: '\e804'; } /* '' */
+.epicon-background:before { content: '\e805'; } /* '' */
+.epicon-quote:before { content: '\e806'; } /* '' */
+.epicon-code:before { content: '\e807'; } /* '' */
+.epicon-rtl:before { content: '\e808'; } /* '' */
+.epicon-align:before { content: '\e809'; } /* '' */
+.epicon-link:before { content: '\e80a'; } /* '' */
+.epicon-image:before { content: '\e80b'; } /* '' */
+.epicon-video:before { content: '\e80c'; } /* '' */
+.epicon-reset:before { content: '\e80d'; } /* '' */
+.epicon-header-1:before { content: '\e80e'; } /* '' */
+.epicon-direction:before { content: '\e80f'; } /* '' */
+.epicon-sub-up:before { content: '\e810'; } /* '' */
+.epicon-list:before { content: '\e812'; } /* '' */
+.epicon-updown:before { content: '\e816'; } /* '' */
