@@ -36,7 +36,7 @@ function ep_init()
  */
 function ep_display($textarea, $editor, $current_page)
 {
-    global $template;
+    global $template, $conf;
 
     $template->set_filename("editorplus", EP_REALPATH . "/admin/template/editorplus_" . $editor . ".tpl");
     $template->assign(array(
@@ -45,6 +45,7 @@ function ep_display($textarea, $editor, $current_page)
         "EP_TEXTAREA_ID" => $textarea,
         "EP_EDITOR" => $editor,
         "EP_PAGE" => $current_page,
+        "EP_CONFIG_QUILL" => unserialize($conf["editorplus"]),
     ));
     $template->parse("editorplus");
 }

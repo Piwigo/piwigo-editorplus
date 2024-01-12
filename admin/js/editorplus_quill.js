@@ -96,7 +96,7 @@ const example_quill_iframe = `
             content: "Heading";
         }
         .ql-formats {
-            margin-right: 10px !important;
+            margin-right: 4px !important;
         }
         .ep-icon {
             cursor: pointer;
@@ -222,9 +222,15 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         const iframe_ep_content = quill.find('.ep-content');
         const toolbar_expand_button = toolbar.find('.ep-icon');
 
-        // !! maybe delete after make 2 toolbar !!
-        const toolbar_height = toolbar.innerHeight() + 2;
-        iframe_ep_content.css('height', 'calc(100% - ' + toolbar_height + 'px)');
+        // Minify toolbar
+        toolbar.find('.ql-formats:not(.ep-icon)').hide();
+        EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+            const type_item = item.split('/')[0];
+            const quill_item = item.split('/')[1];
+            let new_toolbar = toolbar.find(type_item + '.' + quill_item).parent();
+            new_toolbar.show();
+            toolbar.prepend(new_toolbar);
+        });
 
         return {
             Quill: quill_init,
@@ -365,14 +371,29 @@ $(document).ready(function () {
                     quill.expand.on('click', function () {
                         if (quill.expand.data('modal') == 'inactive') {
                             show_quill_modal(iframe.iframe_id, quill.expand);
+                           $(iframe.iframe_dom).find('.ql-formats').show();
                         } else {
                             close_quill_modal(iframe.iframe_id, quill.expand);
+                            $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
+                            EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                                const type_item = item.split('/')[0];
+                                const quill_item = item.split('/')[1];
+                                let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
+                                new_toolbar.show();
+                            });
                         }
                     });
                     // On window click hide the modal
                     $(window).on('click', function (e) {
                         if (e.target == $('#container-' + iframe.iframe_id)[0]) {
                             close_quill_modal(iframe.iframe_id, quill.expand);
+                            $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
+                            EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                                const type_item = item.split('/')[0];
+                                const quill_item = item.split('/')[1];
+                                let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
+                                new_toolbar.show();
+                            });
                         }
                     });
                     // On quill text-change we put his value in textarea
@@ -405,6 +426,13 @@ $(document).ready(function () {
                 if (e.data.type === 'iframeKeyup_' + iframe.quill_id) {
                     const button = iframe.quill.find('.ep-icon'); // expand button in iframe
                     close_quill_modal(iframe.iframe_id, button);
+                    $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
+                        EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                        const type_item = item.split('/')[0];
+                        const quill_item = item.split('/')[1];
+                        let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
+                        new_toolbar.show();
+                    });
                 }
 
             });

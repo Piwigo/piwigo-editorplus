@@ -5,4 +5,5 @@ const EP_PATH = '{$EP_PATH|escape:javascript}';
 const EP_CURRENT_PAGE = '{$EP_PAGE|escape:javascript}';
 const EP_TEXTAREA = {$EP_TEXTAREA_ID|json_encode};
 const EP_SAVE = {$EP_TEXTAREA_ID|json_encode};
+const EP_CONFIG_QUILL = {$EP_CONFIG_QUILL|json_encode};
 {/footer_script}

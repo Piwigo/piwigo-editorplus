@@ -42,23 +42,27 @@ function drag_and_drop(state) {
  */
 function check_drag(count) {
     let filter = '';
+    const config_1 = $('#quill_items .config-quill-badge[data-length="1"]');
+    const config_2 = $('#quill_items .config-quill-badge[data-length="2"]');
+    const config_3 = $('#quill_items .config-quill-badge[data-length="3"]');
+    const config_all = $('#quill_items .config-quill-badge');
     if (count >= 10) {
-        $('#quill_items .config-quill-badge[data-length="3"]').addClass('not-sortable');
-        $('#quill_items .config-quill-badge[data-length="2"]').removeClass('not-sortable');
-        $('#quill_items .config-quill-badge[data-length="1"]').removeClass('not-sortable');
+        config_3.addClass('not-sortable');
+        config_2.removeClass('not-sortable');
+        config_1.removeClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
     if (count >= 11) {
-        $('#quill_items .config-quill-badge[data-length="2"]').addClass('not-sortable');
-        $('#quill_items .config-quill-badge[data-length="1"]').removeClass('not-sortable');
+        config_2.addClass('not-sortable');
+        config_1.removeClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
     if(count >= 12){
-        $('#quill_items .config-quill-badge').addClass('not-sortable');
+        config_all.addClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
     if (count <= 9) {
-        $('#quill_items .config-quill-badge').removeClass('not-sortable');
+        config_all.removeClass('not-sortable');
         filter = '.config-quill-badge';
     }
 
@@ -122,7 +126,7 @@ function show_message_quill(status, message){
 // | Display script                                                        |
 // +-----------------------------------------------------------------------+
 $(document).ready(function () {
-    EP_CONFIG.config_quill.map(function(item) {
+    EP_CONFIG.config_quill.forEach(function(item) {
         $('#quill_items .config-quill-badge[data-quill="' + item + '"]').appendTo('#toolbar-drop');
     });
 
@@ -133,6 +137,7 @@ $(document).ready(function () {
         items: '.config-quill-badge',
         placeholder: 'placeholder',
         revert: true,
+        tolerance: 'pointer',
         stop: function (event, ui) {
             drag_and_drop('reset');
         },
@@ -167,4 +172,7 @@ $(document).ready(function () {
         });
 
     });
+
+    $('.load-quill').hide();
+    $('.config-quill-container').fadeIn();
 });
