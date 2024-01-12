@@ -224,7 +224,7 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
 
         // Minify toolbar
         toolbar.find('.ql-formats:not(.ep-icon)').hide();
-        EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+        EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
             const type_item = item.split('/')[0];
             const quill_item = item.split('/')[1];
             let new_toolbar = toolbar.find(type_item + '.' + quill_item).parent();
@@ -375,7 +375,7 @@ $(document).ready(function () {
                         } else {
                             close_quill_modal(iframe.iframe_id, quill.expand);
                             $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                            EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                            EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
                                 const type_item = item.split('/')[0];
                                 const quill_item = item.split('/')[1];
                                 let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
@@ -388,7 +388,7 @@ $(document).ready(function () {
                         if (e.target == $('#container-' + iframe.iframe_id)[0]) {
                             close_quill_modal(iframe.iframe_id, quill.expand);
                             $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                            EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                            EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
                                 const type_item = item.split('/')[0];
                                 const quill_item = item.split('/')[1];
                                 let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
@@ -396,22 +396,23 @@ $(document).ready(function () {
                             });
                         }
                     });
-                    // On quill text-change we put his value in textarea
-                    quill.Quill.on('text-change', function () {
-                        console.log(quill.Quill.root.innerHTML);
-                        textarea.val(quill.Quill.root.innerHTML);
-                    });
+                    
                     // On textarea text change we fill the editor with textarea value
                     textarea.on('change', function () {
                         quill.Quill.clipboard.dangerouslyPasteHTML(textarea.val());
                     });
                     // Convert Quill Css Class to inline style with Juice
-                    if (EP_SAVE && EP_SAVE.type == 'submit') {
-                        console.log('je suis save par un submit');
+                    let timeout_quill;
+                    quill.Quill.on('text-change', function () {
+                        clearTimeout(timeout_quill);
 
-                    } else {
-                        console.log('je suis sois un appel ajax ou je nai pas de save');
-                    }
+                        timeout_quill = setTimeout(function() {
+                            const quill_content = quill.Quill.root.cloneNode(true);
+                            const cq = convert_quill(quill_content);
+                            textarea.val(cq.innerHTML);
+                        }, 500);
+                    });
+
                     // result button for playground !!!! transform this for preview in toolbar
                     $('#result_button').on('click', function () {
                         const quill_content = quill.Quill.root.cloneNode(true);
@@ -427,7 +428,7 @@ $(document).ready(function () {
                     const button = iframe.quill.find('.ep-icon'); // expand button in iframe
                     close_quill_modal(iframe.iframe_id, button);
                     $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                        EP_CONFIG_QUILL.config_quill.slice().reverse().forEach(function(item) {
+                        EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
                         const type_item = item.split('/')[0];
                         const quill_item = item.split('/')[1];
                         let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();

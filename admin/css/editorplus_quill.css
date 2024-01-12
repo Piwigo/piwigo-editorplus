@@ -46,7 +46,7 @@
   height: fit-content;
 }
 .config-quill-toolbar {
-  max-width: 620px;
+  max-width: 600px;
   margin: auto;
   border: 1px dashed #ccc;
   padding: 5px 0;
@@ -71,6 +71,8 @@
   width: 100%;
   text-align: start;
   padding: 5px 15px;
+  display: flex;
+  justify-content: center;
 }
 .placeholder {
   border: 1px dashed #666;
@@ -94,7 +96,7 @@
 .quill-toolbar {
   margin-bottom: 20px;
 }
-.buttonLike {
+.config-quill-container .buttonLike {
   border-radius: 5px;
   margin-left: initial;
   display: none;

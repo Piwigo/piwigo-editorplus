@@ -45,7 +45,7 @@ function ep_display($textarea, $editor, $current_page)
         "EP_TEXTAREA_ID" => $textarea,
         "EP_EDITOR" => $editor,
         "EP_PAGE" => $current_page,
-        "EP_CONFIG_QUILL" => unserialize($conf["editorplus"]),
+        "EP_CONFIG_EDITOR" => unserialize($conf["editorplus"]),
     ));
     $template->parse("editorplus");
 }
@@ -67,6 +67,7 @@ function ep_load_editor()
     // Here we define the pages that will load the EditorPlus plugin and the textarea id 
     $textarea = array();
     $display = false;
+    
     switch ($page["page"])
     {
         case "album":
@@ -96,7 +97,7 @@ function ep_load_editor()
                     break;
 
                 // Define `Additional pages` plugin
-                case "AdditionalPages/admin/add_page.php":
+                case "AdditionalPages/admin.php":
                     $textarea[] = "ap_content";
                     $display = true;
                     break;
@@ -117,7 +118,7 @@ function ep_load_editor()
 
                 // Define `PWG Stuffs` plugin
                 case "PWG_Stuffs/admin.php":
-                    $textarea[] = "personal_content";
+                    $textarea[] = "textarea";
                     $display = true;
                     break;
 
