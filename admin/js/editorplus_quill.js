@@ -96,7 +96,7 @@ const example_quill_iframe = `
             content: "Heading";
         }
         .ql-formats {
-            margin-right: 4px !important;
+            margin-right: 0px !important;
         }
         .ep-icon {
             cursor: pointer;

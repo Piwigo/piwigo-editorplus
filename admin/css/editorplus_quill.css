@@ -57,6 +57,7 @@
   font-size: 18px;
   padding: 0 5px;
   color: black;
+  align-self: center;
 }
 .config-quill-fulltoolbar {
   min-height: 60px;
