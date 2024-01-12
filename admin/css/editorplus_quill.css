@@ -27,14 +27,11 @@
 }
 
 /* Configuration CSS */
-.config-quill {
-  display: none;
-}
 .config-quill-container {
   margin: auto;
 }
 .config-quill-icon-long {
-  margin-right: 20px;
+  padding-right: 20px;
 }
 .config-quill-badge {
   background: black;
@@ -44,9 +41,11 @@
   padding: 0 5px;
   cursor: pointer;
   white-space: nowrap;
+  margin: 0 2px 5px 2px;
+  height: fit-content;
 }
 .config-quill-toolbar {
-  max-width: 800px;
+  max-width: 500px;
   margin: auto;
   border: 1px dashed #ccc;
   padding: 5px 0;
@@ -59,11 +58,65 @@
   color: black;
 }
 .config-quill-fulltoolbar {
-  margin: 20px 0 10px 0;
-}
-#dragzone {
-  width: 100%;
+  min-height: 60px;
+  padding: 20px 0 10px 0;
+  font-size: 0;
   display: flex;
-  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#toolbar-drop {
+  width: 100%;
+  text-align: start;
   padding-left: 5px;
+}
+.placeholder {
+  border: 1px dashed #666;
+  background-color: #f7f7f7;
+  width: 35px;
+  height: 22px;
+  margin: 0 2px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.not-sortable {
+  background: #f0f0f0f0;
+  color: #777;
+  cursor: not-allowed;
+}
+#toolbar-drop .config-quill-badge {
+  background: #FFA646;
+  color: black;
+}
+.quill-toolbar {
+  margin-bottom: 20px;
+}
+.buttonLike {
+  border-radius: 5px;
+  margin-left: initial;
+  display: none;
+}
+.success-msg,
+.error-msg {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+.quill-msg {
+  color: #059;
+  background-color: #BEF;
+}
+#message_status {
+  display: none;
+  text-align: start;
+  align-self: center;
 }
