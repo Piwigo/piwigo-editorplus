@@ -4,14 +4,14 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 global $page;
 
 // Get current tab
-$page['tab'] = isset($_GET['tab']) ? $_GET['tab'] : $page['tab'] = 'general';
+$page['tab'] = isset($_GET['tab']) ? $_GET['tab'] : $page['tab'] = 'configuration';
 
 // Create tabsheet
 include_once(PHPWG_ROOT_PATH . 'admin/include/tabsheet.class.php');
 $tabsheet = new tabsheet();
 $tabsheet->set_id('editorplus');
-$tabsheet->add('general', 'General', EP_ADMIN . '-general');
-$tabsheet->add('display', 'Display', EP_ADMIN . '-display');
+$tabsheet->add('configuration', '<span class="icon-cog"></span>Configuration', EP_ADMIN . '-configuration');
+$tabsheet->add('playground', '<span class="icon-dice-solid"></span>Playground', EP_ADMIN . '-playground');
 $tabsheet->select($page['tab']);
 $tabsheet->assign();
 

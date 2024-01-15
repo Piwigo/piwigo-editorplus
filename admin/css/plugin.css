@@ -3,7 +3,7 @@ h3, p {
     margin: 0 !important;
 }
 
-/* General CSS */
+/* Configuration CSS */
 .ep-container {
     margin: 20px;
 }
@@ -13,9 +13,11 @@ h3, p {
     align-items: flex-start;
   }
 
-/* Display CSS */
+/* Playground CSS */
 .ep-content {
-    max-width: 800px;
-    margin: auto;
-    margin-top: 20px;
+    max-width: 450px;
+    margin-top: 10px;
+}
+.ep-fieldset {
+    text-align: left;
 }

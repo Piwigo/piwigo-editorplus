@@ -1,7 +1,7 @@
 <?php
 if (!defined("PHPWG_ROOT_PATH")) die("Hacking attempt!");
 
-$template->set_filename("editorplus_content", EP_REALPATH . "/admin/template/general.tpl");
+$template->set_filename("editorplus_content", EP_REALPATH . "/admin/template/configuration.tpl");
 
 // Include the config editor php file
 global $conf;
