@@ -16,22 +16,6 @@
 // +-----------------------------------------------------------------------+
 // Toolbar options
 const fontSizeArr = [false, '8px', '9px', '10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '42px', '54px', '68px', '84px', '98px'];
-const toolbarOptionFull = [
-    ['bold', 'italic', 'underline', 'strike'],
-    ['blockquote', 'code-block'],
-    [{ 'header': 1 }, { 'header': 2 }],
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-    [{ 'script': 'sub' }, { 'script': 'super' }],
-    [{ 'indent': '-1' }, { 'indent': '+1' }],
-    [{ 'direction': 'rtl' }],
-    [{ 'size': fontSizeArr}],
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-    ['link', 'image', 'video'],
-    ['clean']
-];
 
 const toolbarOption = [
     ['bold'],
@@ -71,41 +55,7 @@ const example_quill_iframe = `
 <head>
     <link href="%EP_PATH%node_modules/quill/dist/quill.snow.css" rel="stylesheet">
     <link href="admin/themes/default/fontello/css/fontello.css" rel="stylesheet">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background: white;
-        }
-        .ep-content {
-            height: calc(100% - 66px); 
-        }
-        .ql-snow .ql-picker.ql-size .ql-picker-label::before {
-            content: "Font size";
-        }
-        .ql-snow .ql-size .ql-picker-item::before,
-        .ql-snow .ql-size .ql-picker-label.ql-active::before{
-           content: attr(data-value) !important;
-        }
-        .ql-snow .ql-picker.ql-size .ql-picker-item:not([data-value])::before {
-            content: "Normal" !important;
-        }
-        .ql-snow .ql-picker.ql-header .ql-picker-label::before {
-            content: "Heading";
-        }
-        .ql-formats {
-            margin-right: 0px !important;
-        }
-        .ep-icon {
-            cursor: pointer;
-        }
-        .ql-picker-options {
-            height: calc(100% + 66px);
-            overflow: auto;
-        }
-    </style>
+    <link href="%EP_PATH%admin/css/iframe_quill.css" rel="stylesheet">
     <script src="%EP_PATH%node_modules/quill/dist/quill.js"></` + `script>
 </head>
 <body>
@@ -128,7 +78,7 @@ const example_quill_iframe = `
 
 // Toolbar fullscreen button template
 const example_fullscreen_button = `
-<span class="ql-formats icon-resize-full ep-icon" data-modal="inactive"></span>
+<div class="ep-icon-containter"><span class="ql-formats icon-resize-full ep-icon ep-left-border" data-modal="inactive"></span></div>
 `;
 
 // +-----------------------------------------------------------------------+
@@ -223,14 +173,21 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         const toolbar_expand_button = toolbar.find('.ep-icon');
 
         // Minify toolbar
-        toolbar.find('.ql-formats:not(.ep-icon)').hide();
-        EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
-            const type_item = item.split('/')[0];
-            const quill_item = item.split('/')[1];
-            let new_toolbar = toolbar.find(type_item + '.' + quill_item).parent();
-            new_toolbar.show();
-            toolbar.prepend(new_toolbar);
+        const minify_toolbar = toolbar.find('.ql-formats:not(.ep-icon)');
+        minify_toolbar.hide();
+        toggle_toolbar(iframe_dom);
+        minify_toolbar.wrapAll('<div class="ep-ql-toolbar"></div>');
+
+        // Resize toolbar
+        resize_toolbar(toolbar, iframe_ep_content);
+        $(window).on('resize toggle-modal', function() {
+            resize_toolbar(toolbar, iframe_ep_content);
         });
+
+        // Choose clear/dark theme
+        if (PWG_THEMECONF == 'dark') {
+            $(iframe_dom).find('body').addClass('dark');
+        }
 
         return {
             Quill: quill_init,
@@ -244,13 +201,21 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
 /**
  * `EditorPlus - Quill` : Show quill modal
  */
-function show_quill_modal(quill_iframe_id, expand_button) {
+function show_quill_modal(quill_iframe_id, expand_button, iframe_dom) {
     try {
+        const i_dom = $(iframe_dom);
         $('#container-' + quill_iframe_id).addClass('quill-modal-content');
         $('#' + quill_iframe_id).addClass('quill-modal-iframe');
         expand_button.removeClass('icon-resize-full');
         expand_button.addClass('icon-resize-small');
         expand_button.data('modal', 'active');
+
+        i_dom.find('.ep-ql-toolbar').css('padding', '8px');
+        i_dom.find('.ep-icon').css('border-radius', '5px').removeClass('ep-left-border');
+        i_dom.find('.ep-icon-containter').css('margin', '8px');
+        i_dom.find('.ql-picker-options').css('max-height', 'initial');
+
+        $(window).trigger('toggle-modal');
     } catch (err) {
         console.error('Unable to show quill modal', err);
     }
@@ -259,13 +224,21 @@ function show_quill_modal(quill_iframe_id, expand_button) {
 /**
  * `EditorPlus - Quill` : Close quill modal
  */
-function close_quill_modal(quill_iframe_id, expand_button) {
+function close_quill_modal(quill_iframe_id, expand_button, iframe_dom) {
     try {
+        const i_dom = $(iframe_dom);
         $('#container-' + quill_iframe_id).removeClass('quill-modal-content');
         $('#' + quill_iframe_id).removeClass('quill-modal-iframe');
         expand_button.removeClass('icon-resize-small');
         expand_button.addClass('icon-resize-full');
         expand_button.data('modal', 'inactive');
+
+        i_dom.find('.ep-ql-toolbar').css('padding', '');
+        i_dom.find('.ep-icon').css('border-radius', '').addClass('ep-left-border');
+        i_dom.find('.ep-icon-containter').css('margin', '');
+        i_dom.find('.ql-picker-options').css('max-height', '160px');
+
+        $(window).trigger('toggle-modal');
     } catch (err) {
         console.error('Unable to close modal', err);
     }
@@ -274,8 +247,14 @@ function close_quill_modal(quill_iframe_id, expand_button) {
 /**
  * `EditorPlus - Quill` : Toggle Toolbar
  */
-function toggle_toolbar() {
-
+function toggle_toolbar(iframe_dom) {
+    $(iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
+    EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function (item) {
+        const type_item = item.split('/')[0];
+        const quill_item = item.split('/')[1];
+        let new_toolbar = $(iframe_dom).find(type_item + '.' + quill_item).parent();
+        new_toolbar.show();
+    });
 }
 
 /**
@@ -329,6 +308,14 @@ function convert_quill(text) {
     return text;
 }
 
+/**
+ * `EditorPlus - Quill` : Toggle Toolbar
+ */
+function resize_toolbar(toolbar, iframe_ep_content) {
+    const toolbar_height = toolbar.innerHeight() + 2;
+    iframe_ep_content.css('height', 'calc(100% - ' + toolbar_height + 'px)');
+}
+
 // +-----------------------------------------------------------------------+
 // | Display script                                                        |
 // +-----------------------------------------------------------------------+
@@ -370,30 +357,18 @@ $(document).ready(function () {
                     // Show/Hide quill modal
                     quill.expand.on('click', function () {
                         if (quill.expand.data('modal') == 'inactive') {
-                            show_quill_modal(iframe.iframe_id, quill.expand);
-                           $(iframe.iframe_dom).find('.ql-formats').show();
+                            $(iframe.iframe_dom).find('.ql-formats').show();
+                            show_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
                         } else {
-                            close_quill_modal(iframe.iframe_id, quill.expand);
-                            $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                            EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
-                                const type_item = item.split('/')[0];
-                                const quill_item = item.split('/')[1];
-                                let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
-                                new_toolbar.show();
-                            });
+                            toggle_toolbar(iframe.iframe_dom);
+                            close_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
                         }
                     });
                     // On window click hide the modal
                     $(window).on('click', function (e) {
                         if (e.target == $('#container-' + iframe.iframe_id)[0]) {
-                            close_quill_modal(iframe.iframe_id, quill.expand);
-                            $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                            EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
-                                const type_item = item.split('/')[0];
-                                const quill_item = item.split('/')[1];
-                                let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
-                                new_toolbar.show();
-                            });
+                            toggle_toolbar(iframe.iframe_dom);
+                            close_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
                         }
                     });
                     
@@ -426,14 +401,8 @@ $(document).ready(function () {
                 // Hide modal with escape key from iframe
                 if (e.data.type === 'iframeKeyup_' + iframe.quill_id) {
                     const button = iframe.quill.find('.ep-icon'); // expand button in iframe
-                    close_quill_modal(iframe.iframe_id, button);
-                    $(iframe.iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-                        EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function(item) {
-                        const type_item = item.split('/')[0];
-                        const quill_item = item.split('/')[1];
-                        let new_toolbar = $(iframe.iframe_dom).find(type_item + '.' + quill_item).parent();
-                        new_toolbar.show();
-                    });
+                    toggle_toolbar(iframe.iframe_dom);
+                    close_quill_modal(iframe.iframe_id, button, iframe.iframe_dom);
                 }
 
             });
