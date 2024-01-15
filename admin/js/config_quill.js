@@ -46,22 +46,22 @@ function check_drag(count) {
     const config_2 = $('#quill_items .config-quill-badge[data-length="2"]');
     const config_3 = $('#quill_items .config-quill-badge[data-length="3"]');
     const config_all = $('#quill_items .config-quill-badge');
-    if (count >= 10) {
+    if (count >= 8) {
         config_3.addClass('not-sortable');
         config_2.removeClass('not-sortable');
         config_1.removeClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
-    if (count >= 11) {
+    if (count >= 9) {
         config_2.addClass('not-sortable');
         config_1.removeClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
-    if(count >= 12){
+    if(count >= 10){
         config_all.addClass('not-sortable');
         filter = '.config-quill-badge:not(.not-sortable)';
     }
-    if (count <= 9) {
+    if (count <= 7) {
         config_all.removeClass('not-sortable');
         filter = '.config-quill-badge';
     }

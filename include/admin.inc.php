@@ -17,7 +17,6 @@ function ep_init()
                 "button/ql-underline",
                 "button/ql-strike",
                 "button/ql-header",
-                "button/ql-list",
                 "span/ql-color",
                 "span/ql-background",
                 "span/ql-align",
