@@ -8,7 +8,7 @@
             <strong>Hello World! </strong> 
             <p>Type something here</p> 
         </textarea>
-        <button id="result_button"> See the result </button>
+        <button id="result_button"> Preview </button>
         <div id="result_ep"></div>
     </div>
 </fieldset>
