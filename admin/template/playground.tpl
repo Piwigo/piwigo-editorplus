@@ -5,7 +5,7 @@
     <p>Here you can play with it and see its features</p>
     <div class="ep-content">
         <textarea id="ep-playground" rows="5" cols="33">
-            <strong>Testing something </strong> 
+            <strong>Hello World! </strong> 
             <p>Type something here</p> 
         </textarea>
         <button id="result_button"> See the result </button>
