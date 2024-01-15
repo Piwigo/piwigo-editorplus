@@ -4,12 +4,12 @@ if (!defined("PHPWG_ROOT_PATH")) die("Hacking attempt!");
 if (is_webmaster())
 {
     global $template, $conf;
-    $accept_data = ['button/ql-bold', 'button/ql-italic', 'button/ql-underline', 'button/ql-strike', 'button/ql-blockquote', 'button/ql-code-block', 'button/ql-header', 'button/ql-list', 'button/ql-script', 'button/ql-indent', 'button/ql-direction', 'span/ql-size', 'span/ql-header', 'span/ql-color', 'span/ql-background', 'span/ql-font', 'span/ql-align', 'button/ql-link', 'button/ql-image', 'button/ql-video', 'button/ql-clean'];
+    $accept_data = ["button/ql-bold", "button/ql-italic", "button/ql-underline", "button/ql-strike", "button/ql-blockquote", "button/ql-code-block", "button/ql-header", "button/ql-list", "button/ql-script", "button/ql-indent", "button/ql-direction", "span/ql-size", "span/ql-header", "span/ql-color", "span/ql-background", "span/ql-font", "span/ql-align", "button/ql-link", "button/ql-image", "button/ql-video", "button/ql-clean"];
 
-    if (isset($_POST['config']))
+    if (isset($_POST["config"]))
     {
         $is_valid = true;
-        $config = $_POST['config'];
+        $config = $_POST["config"];
 
         foreach($config as $item)
         {
@@ -30,7 +30,7 @@ if (is_webmaster())
             $response = array(
                 "status" => "success",
                 "message" => "The configuration has been successfully saved.",
-                'data' => $config,
+                "data" => $config,
             );
             echo json_encode($response);
             exit;
@@ -47,6 +47,6 @@ if (is_webmaster())
     }
 
     $template->assign(array(
-        'EP_CONFIG' => unserialize($conf['editorplus']),
+        "EP_CONFIG" => unserialize($conf["editorplus"]),
     ));
 }
