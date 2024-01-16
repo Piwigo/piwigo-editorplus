@@ -502,14 +502,6 @@ $(document).ready(function () {
                         }
                     });
 
-                    // result button for playground !!!! transform this for preview in toolbar
-                    $('#result_button').on('click', function () {
-                        const quill_content = quill.Quill.root.cloneNode(true);
-                        const cq = convert_quill(quill_content);
-                        console.log(cq);
-                        $('#result_ep').html(cq.innerHTML);
-                    });
-
                 }
 
                 // Hide modal with escape key from iframe

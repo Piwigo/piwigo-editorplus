@@ -27,12 +27,6 @@ function drag_and_drop(state) {
         items_quill.push($(this).data('quill'));
     });
     check_drag(count);
-    let change = toggle_save(items_quill);
-    if(change){
-        $('#save').show();
-    }else{
-        $('#save').hide();
-    }
 }
 
 /**
@@ -77,30 +71,6 @@ function check_drag(count) {
     }).disableSelection();
 }
 
-/**
- * `EditorPlus - Configuration Quill` : Toggle save button
- * 
- * Displays save button when EP_CONFIG is different from items in toolbar-drop
- * @param {[]} items tab of quill items 
- */
-function toggle_save(items) {
-    const config = EP_CONFIG.config_quill;
-    if(items.length === 0){
-        return false;
-    }
-
-    if (config.length !== items.length) {
-        return true;
-    }
-
-    for(let i = 0; i < config.length; i++){
-        if(config[i] !== items[i]){
-            return true;
-        }
-    }
-
-    return false;
-}
 /**
  * `EditorPlus - Configuration Quill` : Show status message
  * 
