@@ -85,7 +85,7 @@ const example_quill_iframe = `
 // Toolbar fullscreen button template
 const example_fullscreen_button = `
 <div class="ep-icon-containter">
-    <span id="ql-preview" class="ql-formats icon-eye-off ep-icon" data-preview="inactive"></span>
+    <span id="ql-preview" class="ql-formats icon-code ep-icon" data-preview="inactive"></span>
     <span id="ql-expand" class="ql-formats icon-resize-full ep-icon ep-left-border" data-modal="inactive"></span>
 </div>`;
 
