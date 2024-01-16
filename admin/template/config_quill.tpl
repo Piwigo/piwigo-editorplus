@@ -16,8 +16,8 @@
 </style>
 <span class="icon-spin6 animate-spin load-quill"> </span>
 <div class="config-quill-container">
-    <p>With Quill editor's minify mode (small display), you can choose a few items to add to the toolbar.</p>
-    <p>To do this, drag and drop items into the minify quill toolbar.</p>
+    <p>With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.</p>
+    <p>To do this, drag and drop items into the minify toolbar.</p>
     <p>Due to the space restrictions you can't choose them all.</p>
     <div class="config-quill-fulltoolbar dropzone" id="quill_items">
         <span class="config-quill-badge tiptip" title="Bold" data-length="1" data-quill="button/ql-bold"> <span class="config-quill-icon epicon-bold"></span></span>
@@ -42,7 +42,7 @@
         <span class="config-quill-badge tiptip" title="Clean" data-length="1" data-quill="button/ql-clean"> <span class="config-quill-icon epicon-reset"></span></span>
     </div>
     <div class="quill-toolbar">
-        <p>Minify Quill Toolbar (drag items here)</p>
+        <p>Minify Toolbar (drag items here)</p>
         <div class="config-quill-toolbar">
             <div class="dropzone" id="toolbar-drop">
 
