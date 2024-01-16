@@ -20,27 +20,26 @@
     <p>To do this, drag and drop items into the minify quill toolbar.</p>
     <p>Due to the space restrictions you can't choose them all.</p>
     <div class="config-quill-fulltoolbar dropzone" id="quill_items">
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-bold"> <span class="config-quill-icon epicon-bold"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-italic"> <span class="config-quill-icon epicon-italic"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-underline"> <span class="config-quill-icon epicon-underline"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-strike"> <span class="config-quill-icon epicon-strike"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-blockquote"> <span class="config-quill-icon epicon-quote"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-code-block"> <span class="config-quill-icon epicon-code"></span></span>
-        <span class="config-quill-badge" data-length="2" data-quill="button/ql-header"> <span class="config-quill-icon-long epicon-header-1"></span></span>
-        <span class="config-quill-badge" data-length="2" data-quill="button/ql-list"> <span class="config-quill-icon-long epicon-list"></span></span>
-        <span class="config-quill-badge" data-length="2" data-quill="button/ql-script"> <span class="config-quill-icon-long epicon-sub-up"></span></span>
-        <span class="config-quill-badge" data-length="2" data-quill="button/ql-indent"> <span class="config-quill-icon-long epicon-direction"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-direction"> <span class="config-quill-icon epicon-rtl"></span></span>
-        <span class="config-quill-badge" data-length="3" data-quill="span/ql-size">Font size<span class="config-quill-icon epicon-updown"></span></span>
-        <span class="config-quill-badge" data-length="3" data-quill="span/ql-header">Heading<span class="config-quill-icon epicon-updown"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="span/ql-color"> <span class="config-quill-icon epicon-color"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="span/ql-background"> <span class="config-quill-icon epicon-background"></span></span>
-        <span class="config-quill-badge" data-length="3" data-quill="span/ql-font">Sans serif<span class="ep-icon epicon-updown"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="span/ql-align"> <span class="config-quill-icon epicon-align"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-link"> <span class="config-quill-icon epicon-link"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-image"> <span class="config-quill-icon epicon-image"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-video"> <span class="config-quill-icon epicon-video"></span></span>
-        <span class="config-quill-badge" data-length="1" data-quill="button/ql-clean"> <span class="config-quill-icon epicon-reset"></span></span>
+        <span class="config-quill-badge tiptip" title="Bold" data-length="1" data-quill="button/ql-bold"> <span class="config-quill-icon epicon-bold"></span></span>
+        <span class="config-quill-badge tiptip" title="Italic" data-length="1" data-quill="button/ql-italic"> <span class="config-quill-icon epicon-italic"></span></span>
+        <span class="config-quill-badge tiptip" title="Underline" data-length="1" data-quill="button/ql-underline"> <span class="config-quill-icon epicon-underline"></span></span>
+        <span class="config-quill-badge tiptip" title="Strike" data-length="1" data-quill="button/ql-strike"> <span class="config-quill-icon epicon-strike"></span></span>
+        <span class="config-quill-badge tiptip" title="Quote" data-length="1" data-quill="button/ql-blockquote"> <span class="config-quill-icon epicon-quote"></span></span>
+        <span class="config-quill-badge tiptip" title="Heading" data-length="2" data-quill="button/ql-header"> <span class="config-quill-icon-long epicon-header-1"></span></span>
+        <span class="config-quill-badge tiptip" title="List" data-length="2" data-quill="button/ql-list"> <span class="config-quill-icon-long epicon-list"></span></span>
+        <span class="config-quill-badge tiptip" title="Sub / Up" data-length="2" data-quill="button/ql-script"> <span class="config-quill-icon-long epicon-sub-up"></span></span>
+        <span class="config-quill-badge tiptip" title="Direction" data-length="2" data-quill="button/ql-indent"> <span class="config-quill-icon-long epicon-direction"></span></span>
+        <span class="config-quill-badge tiptip" title="Rtl" data-length="1" data-quill="button/ql-direction"> <span class="config-quill-icon epicon-rtl"></span></span>
+        <span class="config-quill-badge tiptip" title="Font size" data-length="3" data-quill="span/ql-size">Font size<span class="config-quill-icon epicon-updown"></span></span>
+        <span class="config-quill-badge tiptip" title="Heading list" data-length="3" data-quill="span/ql-header">Heading<span class="config-quill-icon epicon-updown"></span></span>
+        <span class="config-quill-badge tiptip" title="Color" data-length="1" data-quill="span/ql-color"> <span class="config-quill-icon epicon-color"></span></span>
+        <span class="config-quill-badge tiptip" title="Background color" data-length="1" data-quill="span/ql-background"> <span class="config-quill-icon epicon-background"></span></span>
+        <span class="config-quill-badge tiptip" title="Font" data-length="3" data-quill="span/ql-font">Sans serif<span class="ep-icon epicon-updown"></span></span>
+        <span class="config-quill-badge tiptip" title="Align" data-length="1" data-quill="span/ql-align"> <span class="config-quill-icon epicon-align"></span></span>
+        <span class="config-quill-badge tiptip" title="Link" data-length="1" data-quill="button/ql-link"> <span class="config-quill-icon epicon-link"></span></span>
+        <span class="config-quill-badge tiptip" title="Image" data-length="1" data-quill="button/ql-image"> <span class="config-quill-icon epicon-image"></span></span>
+        <span class="config-quill-badge tiptip" title="Video" data-length="1" data-quill="button/ql-video"> <span class="config-quill-icon epicon-video"></span></span>
+        <span class="config-quill-badge tiptip" title="Clean" data-length="1" data-quill="button/ql-clean"> <span class="config-quill-icon epicon-reset"></span></span>
     </div>
     <div class="quill-toolbar">
         <p>Minify Quill Toolbar (drag items here)</p>
