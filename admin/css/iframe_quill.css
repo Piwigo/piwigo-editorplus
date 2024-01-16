@@ -1,3 +1,4 @@
+/* Css General */
 body, html {
     margin: 0;
     padding: 0;
@@ -35,6 +36,8 @@ body.dark {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
+/* CSS Content toolbar */
 .ep-content {
     height: calc(100% - 42px); 
 }
@@ -54,17 +57,27 @@ body.dark {
 .ql-formats {
     margin-right: 0px !important;
 }
-.ep-icon {
+
+/* CSS Quill toolbar */
+#ql-expand {
     cursor: pointer;
     align-self: center;
     padding: 8px;
+    color: var(--color-text);
+}
+#ql-expand:hover {
+    background: #ffa646;
     color: black;
 }
 .ep-left-border {
     border-left: 1px solid var(--color-border-left);
 }
-.ep-icon:hover {
-    background: #ffa646;
+#ql-preview{
+    cursor: pointer;
+    color: var(--color-text);
+}
+#ql-preview:hover {
+    color: #ffa646;
 }
 .ql-picker-options {
     height: fit-content;
@@ -88,6 +101,17 @@ body.dark {
     flex-wrap: wrap;
     align-content: center;
 }
+.ep-preview {
+    background: var(--color-bg-editor);
+    color: var(--color-text);
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    padding: 8px 12px;
+}
+
+/* CSS Quill toolbar color items*/
 .ql-snow.ql-toolbar button.ql-active .ql-stroke {
     stroke: #ffa646 !important;
 }

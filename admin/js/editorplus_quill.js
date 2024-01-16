@@ -4,12 +4,19 @@
 // | To avoid a large number of files, everything concerning quill editor  |
 // | is written in this file.                                              |
 // | Uppercase constants are defined in editorplus_quill.tpl.              |
-// | The file is divided into three parts:                                 |
+// | The file is divided into four parts:                                  |
+// |  - Definition of variables                                            |
 // |  - Definition of constants                                            |
 // |  - Definition of functions                                            |
 // |  - Display script                                                     |
 // +-----------------------------------------------------------------------+
 
+
+// +-----------------------------------------------------------------------+
+// | Definition of constants                                               |
+// +-----------------------------------------------------------------------+
+// Timeout for data pre-registration
+let ep_timeout;
 
 // +-----------------------------------------------------------------------+
 // | Definition of constants                                               |
@@ -78,8 +85,14 @@ const example_quill_iframe = `
 
 // Toolbar fullscreen button template
 const example_fullscreen_button = `
-<div class="ep-icon-containter"><span class="ql-formats icon-resize-full ep-icon ep-left-border" data-modal="inactive"></span></div>
-`;
+<div class="ep-icon-containter">
+    <span id="ql-preview" class="ql-formats icon-eye-off ep-icon" data-preview="inactive"></span>
+    <span id="ql-expand" class="ql-formats icon-resize-full ep-icon ep-left-border" data-modal="inactive"></span>
+</div>`;
+
+// Textarea preview template
+const example_textarea_preview = `
+<textarea class="ep-preview" id="ep-preview"></textarea>`;
 
 // +-----------------------------------------------------------------------+
 // | Definition of functions                                               |
@@ -170,7 +183,8 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         const toolbar = quill.find('.ql-toolbar');
         toolbar.append(example_fullscreen_button);
         const iframe_ep_content = quill.find('.ep-content');
-        const toolbar_expand_button = toolbar.find('.ep-icon');
+        const toolbar_expand_button = toolbar.find('#ql-expand');
+        const toolbar_preview_button = toolbar.find('#ql-preview');
 
         // Minify toolbar
         const minify_toolbar = toolbar.find('.ql-formats:not(.ep-icon)');
@@ -180,7 +194,7 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
 
         // Resize toolbar
         resize_toolbar(toolbar, iframe_ep_content);
-        $(window).on('resize toggle-modal', function() {
+        $(window).on('resize toolbar-resize', function() {
             resize_toolbar(toolbar, iframe_ep_content);
         });
 
@@ -192,6 +206,7 @@ function load_quill(Quill, iframe_dom, quill_id, quill) {
         return {
             Quill: quill_init,
             expand: toolbar_expand_button,
+            preview: toolbar_preview_button,
         }
     } catch (err) {
         console.error('Unable to load quill', err);
@@ -211,11 +226,11 @@ function show_quill_modal(quill_iframe_id, expand_button, iframe_dom) {
         expand_button.data('modal', 'active');
 
         i_dom.find('.ep-ql-toolbar').css('padding', '8px');
-        i_dom.find('.ep-icon').css('border-radius', '5px').removeClass('ep-left-border');
+        i_dom.find('#ql-expand').css('border-radius', '5px').removeClass('ep-left-border');
         i_dom.find('.ep-icon-containter').css('margin', '8px');
         i_dom.find('.ql-picker-options').css('max-height', 'initial');
 
-        $(window).trigger('toggle-modal');
+        $(window).trigger('toolbar-resize');
     } catch (err) {
         console.error('Unable to show quill modal', err);
     }
@@ -234,11 +249,11 @@ function close_quill_modal(quill_iframe_id, expand_button, iframe_dom) {
         expand_button.data('modal', 'inactive');
 
         i_dom.find('.ep-ql-toolbar').css('padding', '');
-        i_dom.find('.ep-icon').css('border-radius', '').addClass('ep-left-border');
+        i_dom.find('#ql-expand').css('border-radius', '').addClass('ep-left-border');
         i_dom.find('.ep-icon-containter').css('margin', '');
         i_dom.find('.ql-picker-options').css('max-height', '160px');
 
-        $(window).trigger('toggle-modal');
+        $(window).trigger('toolbar-resize');
     } catch (err) {
         console.error('Unable to close modal', err);
     }
@@ -248,13 +263,17 @@ function close_quill_modal(quill_iframe_id, expand_button, iframe_dom) {
  * `EditorPlus - Quill` : Toggle Toolbar
  */
 function toggle_toolbar(iframe_dom) {
-    $(iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
-    EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function (item) {
-        const type_item = item.split('/')[0];
-        const quill_item = item.split('/')[1];
-        let new_toolbar = $(iframe_dom).find(type_item + '.' + quill_item).parent();
-        new_toolbar.show();
-    });
+    try {
+        $(iframe_dom).find('.ql-formats:not(.ep-icon)').hide();
+        EP_CONFIG_EDITOR.config_quill.slice().reverse().forEach(function (item) {
+            const type_item = item.split('/')[0];
+            const quill_item = item.split('/')[1];
+            let new_toolbar = $(iframe_dom).find(type_item + '.' + quill_item).parent();
+            new_toolbar.show();
+        });
+    } catch (err) {
+        console.error('Unable to toggle toolbar', err);
+    }
 }
 
 /**
@@ -263,57 +282,142 @@ function toggle_toolbar(iframe_dom) {
  * @returns convert quill content
  */
 function convert_quill(text) {
-    // Convert class 'ql-indent-*' to inline style
-    $(text).find('[class^="ql-indent-"]').each(function() {
-        const e = $(this);
-        const c = e[0].className;
-        const i = c.match(/\d+$/)[0];
-        e.removeClass(c);
-        // e.removeAttr('class');
-        e.css('padding-left', i*3 + 'em');
-    });
-    // Convert class 'ql-code-block-container' to inline style
-    $(text).find('.ql-code-block-container').each(function() {
-        const e = $(this);
-        const c = e[0].className;
-        e.css({
-            'background-color' : '#23241f',
-            'color' : '#f8f8f2',
-            'overflow' : 'visible',
-            'margin-bottom' : '5px',
-            'margin-top' : '5px',
-            'padding' : '5px 10px',
-            'border-radius' : '3px',
-            'font-family' : 'monospace',
-            'position' : 'relative',
+    try {
+        // Convert class 'ql-indent-*' to inline style
+        $(text).find('[class^="ql-indent-"]').each(function () {
+            const e = $(this);
+            const c = e[0].className;
+            const i = c.match(/\d+$/)[0];
+            e.removeClass(c);
+            // e.removeAttr('class');
+            e.css('padding-left', i * 3 + 'em');
         });
-        e.removeClass(c);
-        e.find('.ql-code-block').removeClass('ql-code-block');
-    });
-    // Convert class 'ql-ui' to inline style
-    $(text).find('.ql-ui').each(function() {
-        const e = $(this);
-        e.remove();
-    });
-    // Convert class 'ql-video' to inline style
-    $(text).find('.ql-video').each(function() {
-        const e = $(this);
-        e.removeClass('ql-video');
-        e.css({
-            'display' : 'block',
-            'max-width' : '100%'
+        // Convert class 'ql-code-block-container' to inline style
+        $(text).find('.ql-code-block-container').each(function () {
+            const e = $(this);
+            const c = e[0].className;
+            e.css({
+                'background-color': '#23241f',
+                'color': '#f8f8f2',
+                'overflow': 'visible',
+                'margin-bottom': '5px',
+                'margin-top': '5px',
+                'padding': '5px 10px',
+                'border-radius': '3px',
+                'font-family': 'monospace',
+                'position': 'relative',
+            });
+            e.removeClass(c);
+            e.find('.ql-code-block').removeClass('ql-code-block');
         });
-    });
+        // Convert class 'ql-ui' to inline style
+        $(text).find('.ql-ui').each(function () {
+            const e = $(this);
+            e.remove();
+        });
+        // Convert class 'ql-video' to inline style
+        $(text).find('.ql-video').each(function () {
+            const e = $(this);
+            e.removeClass('ql-video');
+            e.css({
+                'display': 'block',
+                'max-width': '100%'
+            });
+        });
 
-    return text;
+        return text;
+    } catch (err) {
+        console.error('Unable to convert quill css to inline style', err);
+    }
 }
 
 /**
  * `EditorPlus - Quill` : Toggle Toolbar
  */
 function resize_toolbar(toolbar, iframe_ep_content) {
-    const toolbar_height = toolbar.innerHeight() + 2;
-    iframe_ep_content.css('height', 'calc(100% - ' + toolbar_height + 'px)');
+    try {
+        const toolbar_height = toolbar.innerHeight() + 2;
+        iframe_ep_content.css('height', 'calc(100% - ' + toolbar_height + 'px)');
+    } catch (err) {
+        console.error('Unable to resize toolbar', err);
+    }
+}
+
+/**
+ * `EditorPlus - Quill` : Show Preview
+ */
+function show_preview(quill_preview, quill_expand, iframe_dom, quill, textarea) {
+    try {
+        const i_dom = $(iframe_dom);
+        const editor = i_dom.find('.ql-editor');
+        const textarea_preview = $(example_textarea_preview);
+        const preview = i_dom.find('#ep-preview');
+        const quill_content = quill.root.cloneNode(true);
+
+        i_dom.find('.ql-formats:not(.ep-icon)').hide();
+        quill_preview.css('color', '#ffa646');
+
+        if (preview.length == 0) {
+            editor.hide();
+            editor.before(textarea_preview);
+            const cq = convert_quill(quill_content);
+            textarea_preview.val(cq.innerHTML);
+
+            quill.off('text-change');
+            textarea_preview.on('input', function () {
+                textarea.val(textarea_preview.val());
+            });
+        }
+
+        $(window).trigger('toolbar-resize');
+        quill_preview.data('preview', 'active');
+    } catch (err) {
+        console.error('Unable to show preview', err);
+    }
+}
+
+/**
+ * `EditorPlus - Quill` : Hide Preview
+ */
+function hide_preview(quill_preview, quill_expand, iframe_dom, quill, textarea) {
+    try {
+        const i_dom = $(iframe_dom);
+        const preview = i_dom.find('#ep-preview');
+        const editor = i_dom.find('.ql-editor');
+
+        quill_expand.data('modal') == 'inactive' ?
+            toggle_toolbar(iframe_dom) :
+            i_dom.find('.ql-formats').show();
+        quill_preview.css('color', '');
+
+        if (preview.length > 0) {
+            quill.clipboard.dangerouslyPasteHTML(preview.val());
+            preview.remove();
+            editor.show();
+
+            quill.on('text-change', function () {
+                fill_textarea(quill, textarea);
+            });
+        }
+
+        $(window).trigger('toolbar-resize');
+        quill_preview.data('preview', 'inactive');
+    } catch (err) {
+        console.error('Unable to hide preview', err);
+    }
+}
+
+/**
+ * `EditorPlus - Quill` : Fill textarea for pre-registration
+ */
+function fill_textarea(quill, textarea) {
+    clearTimeout(ep_timeout);
+
+    ep_timeout = setTimeout(function () {
+        const quill_content = quill.root.cloneNode(true);
+        const cq = convert_quill(quill_content);
+        textarea.val(cq.innerHTML);
+    }, 500);
 }
 
 // +-----------------------------------------------------------------------+
@@ -357,18 +461,27 @@ $(document).ready(function () {
                     // Show/Hide quill modal
                     quill.expand.on('click', function () {
                         if (quill.expand.data('modal') == 'inactive') {
-                            $(iframe.iframe_dom).find('.ql-formats').show();
                             show_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
+
+                            quill.preview.data('preview') == 'inactive' ?
+                            hide_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea) :
+                            show_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
                         } else {
-                            toggle_toolbar(iframe.iframe_dom);
                             close_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
+                            
+                            quill.preview.data('preview') == 'inactive' ?
+                            hide_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea) :
+                            show_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
                         }
                     });
                     // On window click hide the modal
                     $(window).on('click', function (e) {
                         if (e.target == $('#container-' + iframe.iframe_id)[0]) {
-                            toggle_toolbar(iframe.iframe_dom);
                             close_quill_modal(iframe.iframe_id, quill.expand, iframe.iframe_dom);
+                            
+                            quill.preview.data('preview') == 'inactive' ?
+                            hide_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea) :
+                            show_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
                         }
                     });
                     
@@ -376,16 +489,18 @@ $(document).ready(function () {
                     textarea.on('change', function () {
                         quill.Quill.clipboard.dangerouslyPasteHTML(textarea.val());
                     });
-                    // Convert Quill Css Class to inline style with Juice
-                    let timeout_quill;
+                    // Convert Quill Css Class to inline style
                     quill.Quill.on('text-change', function () {
-                        clearTimeout(timeout_quill);
+                        fill_textarea(quill.Quill, textarea);
+                    });
 
-                        timeout_quill = setTimeout(function() {
-                            const quill_content = quill.Quill.root.cloneNode(true);
-                            const cq = convert_quill(quill_content);
-                            textarea.val(cq.innerHTML);
-                        }, 500);
+                    // Preview button
+                    quill.preview.on('click', function() {
+                        if (quill.preview.data('preview') == 'inactive') {
+                            show_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
+                        } else {
+                            hide_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
+                        }
                     });
 
                     // result button for playground !!!! transform this for preview in toolbar
@@ -400,9 +515,12 @@ $(document).ready(function () {
 
                 // Hide modal with escape key from iframe
                 if (e.data.type === 'iframeKeyup_' + iframe.quill_id) {
-                    const button = iframe.quill.find('.ep-icon'); // expand button in iframe
-                    toggle_toolbar(iframe.iframe_dom);
+                    const button = iframe.quill.find('#ql-expand'); // expand button in iframe
                     close_quill_modal(iframe.iframe_id, button, iframe.iframe_dom);
+                    
+                    quill.preview.data('preview') == 'inactive' ?
+                    hide_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea) :
+                    show_preview(quill.preview, quill.expand, iframe.iframe_dom, quill.Quill, textarea);
                 }
 
             });
