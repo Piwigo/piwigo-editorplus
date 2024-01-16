@@ -107,7 +107,6 @@ $(document).ready(function () {
         items: '.config-quill-badge',
         placeholder: 'placeholder',
         revert: true,
-        tolerance: 'pointer',
         stop: function (event, ui) {
             drag_and_drop('reset');
         },

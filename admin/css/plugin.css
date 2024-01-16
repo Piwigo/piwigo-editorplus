@@ -33,6 +33,9 @@ p {
   justify-content: center;
   align-items: center;
 }
+.config-quill-badge:not(:first-child) .config-quill-icon::before {
+  margin-left: 0;
+}
 .icon-dice-solid {
     padding-right: 8px;
 }
@@ -55,7 +58,6 @@ p {
   cursor: pointer;
   white-space: nowrap;
   margin: 0 2px 5px 2px;
-  height: fit-content;
 }
 .config-quill-toolbar {
   max-width: 600px;
@@ -74,15 +76,10 @@ p {
   min-height: 60px;
   padding: 10px 0;
   font-size: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
 }
 #toolbar-drop {
   width: 100%;
-  text-align: start;
   padding: 5px 15px;
-  display: flex;
 }
 .placeholder {
   border: 1px dashed #666;
