@@ -8,23 +8,8 @@ function ep_init()
 {
     global $conf;
 
-    if (!isset($conf['editorplus'])) {
-        $conf['editorplus'] = array(
-            'editor' => 'quill',
-            'config_quill' => [
-                'button/ql-bold',
-                'button/ql-italic',
-                'button/ql-underline',
-                'button/ql-strike',
-                'button/ql-header',
-                'span/ql-color',
-                'span/ql-background',
-                'span/ql-align',
-                'button/ql-clean',
-            ],
-        );
-        conf_update_param('editorplus', $conf['editorplus']);
-    }
+    // prepare plugin configuration
+    $conf['editorplus'] = safe_unserialize($conf['editorplus']);
 }
 
 /**
@@ -37,6 +22,7 @@ function ep_display($textarea, $editor, $current_page)
 {
     global $template, $conf;
 
+    // set template and assign variable
     $template->set_filename('editorplus', EP_REALPATH . '/admin/template/editorplus_' . $editor . '.tpl');
     $template->assign(array(
         'EP_PATH' => EP_PATH,
@@ -44,7 +30,7 @@ function ep_display($textarea, $editor, $current_page)
         'EP_TEXTAREA_ID' => $textarea,
         'EP_EDITOR' => $editor,
         'EP_PAGE' => $current_page,
-        'EP_CONFIG_EDITOR' => unserialize($conf['editorplus']),
+        'EP_CONFIG_EDITOR' => $conf['editorplus'],
     ));
     $template->parse('editorplus');
 }
