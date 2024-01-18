@@ -47,6 +47,7 @@ EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of 
 Get a quick overview of how to configure and use EditorPlus in your Piwigo gallery. The following animated GIF demonstrates the process of adding and removing items in the Quill editor:
 
 ![Configuration of EditorPlus](https://i.ibb.co/r7mcz9P/helper-clear.gif)
+
 This visual guide should help you easily understand how to customize the WYSIWYG editor for your needs.
 
 ## License
