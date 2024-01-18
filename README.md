@@ -1,5 +1,6 @@
 # EditorPlus
 EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of defined textareas.
+
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/LintyDev/piwigo-editorplus/main?label=editorplus) ![Static Badge](https://img.shields.io/badge/v14.1.0-pwg?label=piwigo) ![GitHub issues](https://img.shields.io/github/issues/LintyDev/piwigo-editorplus?color=yellow)
 
 ## Summary
