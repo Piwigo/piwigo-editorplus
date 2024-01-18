@@ -9,28 +9,32 @@ Description: WYSIWYG Editor for Piwigo.
 Has Settings: true
 */
 
-if (!defined("PHPWG_ROOT_PATH")) die("Hacking attempt!");
+if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 // +-----------------------------------------------------------------------+
 // | Define plugin constants                                               |
 // +-----------------------------------------------------------------------+
 
-define("EP_ID", basename(dirname(__FILE__)));
-define("EP_PATH", PHPWG_PLUGINS_PATH . EP_ID . "/");
-define("EP_REALPATH", realpath(EP_PATH));
-define("EP_ADMIN", get_root_url() . "admin.php?page=plugin-" . EP_ID);
+define('EP_ID', basename(dirname(__FILE__)));
+define('EP_PATH', PHPWG_PLUGINS_PATH . EP_ID . '/');
+define('EP_REALPATH', realpath(EP_PATH));
+define('EP_ADMIN', get_root_url() . 'admin.php?page=plugin-' . EP_ID);
 
 // +-----------------------------------------------------------------------+
 // | Init EditorPlus                                                       |
 // +-----------------------------------------------------------------------+
 
 // Include once admin function
-include_once(EP_PATH . "include/admin.inc.php");
+include_once(EP_PATH . 'include/admin.inc.php');
 
 // init
-add_event_handler("init", "ep_init");
+add_event_handler('init', 'ep_init');
 
-if (defined("IN_ADMIN")) {
+// add API function
+$ws_file = EP_PATH . 'include/ws_functions.inc.php';
+add_event_handler('ws_add_methods', 'ep_quill_add_methods', EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
+
+if (defined('IN_ADMIN')) {
     // Include EditorPlus
-    include(EP_PATH . "editorplus.php");
+    include(EP_PATH . 'editorplus.php');
 }

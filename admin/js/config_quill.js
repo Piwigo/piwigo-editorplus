@@ -78,25 +78,23 @@ function check_drag(count) {
  */
 function show_message_quill(status, message){
     const id_msg = $('#message_status');
-    const id_msg_icon = $('#message_status_icon');
-    const id_msg_content = $('#message_status_content');
-    const class_msg = status === 'success' ? 'success-msg' : status === 'error' ? 'error-msg' : 'quill-msg';
-    const icon_msg = status === 'success' ? 'icon-ok' : status === 'error' ? 'icon-cancel' : 'icon-info-circled-1';
+    const msg_class = status == 'success' ? 'info-message icon-ok' : 'info-error icon-cancel';
     
-    id_msg_icon.addClass(icon_msg);
-    id_msg_content.text(message);
-    id_msg.addClass(class_msg).fadeIn();
+    id_msg.removeClass()
+    id_msg.addClass(msg_class);
+    id_msg.html(message);
+    id_msg.fadeIn();
 
     setTimeout(function() {
         id_msg.fadeOut()
-    }, 3000);
+    }, 5000);
 }
 
 // +-----------------------------------------------------------------------+
 // | Display script                                                        |
 // +-----------------------------------------------------------------------+
 $(document).ready(function () {
-    EP_CONFIG.config_quill.forEach(function(item) {
+    EP_CONFIG_EDITOR.config_quill.forEach(function(item) {
         $('#quill_items .config-quill-badge[data-quill="' + item + '"]').appendTo('#toolbar-drop');
     });
 
@@ -116,23 +114,37 @@ $(document).ready(function () {
         accept: '.config-quill-badge',
     });
 
+    $('.icon-helper').on('click', function() {
+        $('#helper-quill-modal').fadeIn();
+    });
+
+    $('.helper-quill-close').on('click', function() {
+        $('#helper-quill-modal').fadeOut();
+    });
+
     $('#save').on('click', function() {
         let data_quill = [];
         $('#toolbar-drop .config-quill-badge').each(function() {
             data_quill.push($(this).data('quill'));
         });
-        
+
         $.ajax({
+            url: 'ws.php?format=json&method=ep.setConfig',
             type: 'POST',
-            url: window.location.href,
             data: {
-                config: data_quill,
+                config_quill: data_quill,
             },
             dataType: 'json',
             success: function(res) {
-                EP_CONFIG.config_quill = res.data;
+                const result = res.result;
+                const iframe_ql = $('[id^="ep-playground-quill"]').get(0);
+                const iframe_dom_ql = iframe_ql.contentDocument || iframe_ql.contentWindow.document;
+                
+                EP_CONFIG_EDITOR.config_quill = result.data;
+
                 drag_and_drop('reset');
-                show_message_quill(res.status, res.message);
+                toggle_toolbar(iframe_dom_ql);
+                show_message_quill(result.status, result.message);
             },
             error: function(err) {
                 console.error(err);

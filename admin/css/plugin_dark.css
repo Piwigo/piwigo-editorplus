@@ -1,0 +1,24 @@
+/* Dark CSS */
+p {
+  color: #bbb;
+}
+.ep-quill-helper-content {
+  background-color: #444;
+}
+.ep-save {
+  background-color: #444;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.not-sortable {
+  background: #555;
+  color: #bbb;
+}
+.config-quill-toolbar {
+  border-color: rgba(0, 0, 0, 0.538);
+}
+.config-quill-toolbar .expand {
+  color: #bbb;
+}
+.placeholder {
+  background-color: #818181;
+}

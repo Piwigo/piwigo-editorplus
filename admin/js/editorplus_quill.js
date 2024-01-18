@@ -268,6 +268,7 @@ function toggle_toolbar(iframe_dom) {
             const type_item = item.split('/')[0];
             const quill_item = item.split('/')[1];
             let new_toolbar = $(iframe_dom).find(type_item + '.' + quill_item).parent();
+            new_toolbar.prependTo(new_toolbar.parent());
             new_toolbar.show();
         });
     } catch (err) {

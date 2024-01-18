@@ -1,5 +1,5 @@
 <?php
-if (!defined("PHPWG_ROOT_PATH")) die("Hacking attempt!");
+if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 /**
  * `EditorPlus` : plugin init function
@@ -8,22 +8,22 @@ function ep_init()
 {
     global $conf;
 
-    if (!isset($conf["editorplus"])) {
-        $conf["editorplus"] = array(
-            "editor" => "quill",
-            "config_quill" => [
-                "button/ql-bold",
-                "button/ql-italic",
-                "button/ql-underline",
-                "button/ql-strike",
-                "button/ql-header",
-                "span/ql-color",
-                "span/ql-background",
-                "span/ql-align",
-                "button/ql-clean",
+    if (!isset($conf['editorplus'])) {
+        $conf['editorplus'] = array(
+            'editor' => 'quill',
+            'config_quill' => [
+                'button/ql-bold',
+                'button/ql-italic',
+                'button/ql-underline',
+                'button/ql-strike',
+                'button/ql-header',
+                'span/ql-color',
+                'span/ql-background',
+                'span/ql-align',
+                'button/ql-clean',
             ],
         );
-        conf_update_param("editorplus", $conf["editorplus"]);
+        conf_update_param('editorplus', $conf['editorplus']);
     }
 }
 
@@ -37,16 +37,16 @@ function ep_display($textarea, $editor, $current_page)
 {
     global $template, $conf;
 
-    $template->set_filename("editorplus", EP_REALPATH . "/admin/template/editorplus_" . $editor . ".tpl");
+    $template->set_filename('editorplus', EP_REALPATH . '/admin/template/editorplus_' . $editor . '.tpl');
     $template->assign(array(
-        "EP_PATH" => EP_PATH,
-        "EP_REALPATH" => EP_REALPATH,
-        "EP_TEXTAREA_ID" => $textarea,
-        "EP_EDITOR" => $editor,
-        "EP_PAGE" => $current_page,
-        "EP_CONFIG_EDITOR" => unserialize($conf["editorplus"]),
+        'EP_PATH' => EP_PATH,
+        'EP_REALPATH' => EP_REALPATH,
+        'EP_TEXTAREA_ID' => $textarea,
+        'EP_EDITOR' => $editor,
+        'EP_PAGE' => $current_page,
+        'EP_CONFIG_EDITOR' => unserialize($conf['editorplus']),
     ));
-    $template->parse("editorplus");
+    $template->parse('editorplus');
 }
 
 /**
@@ -58,66 +58,66 @@ function ep_load_editor()
     global $page;
 
     // If we dont have `$page` we cannot load the editor 
-    if (!isset($page["page"])) return;
+    if (!isset($page['page'])) return;
 
     // For later if we want to add an another WYSIWYG we did it here
-    $editor = "quill";
+    $editor = 'quill';
 
     // Here we define the pages that will load the EditorPlus plugin and the textarea id 
     $textarea = array();
     $display = false;
     
-    switch ($page["page"])
+    switch ($page['page'])
     {
-        case "album":
-            $textarea[] = "cat-comment";
+        case 'album':
+            $textarea[] = 'cat-comment';
             $display = true;
             break;
 
-        case "photo":
-            $textarea[] = "description";
+        case 'photo':
+            $textarea[] = 'description';
             $display = true;
             break;
 
-        case "configuration":
-            $textarea[] = "page_banner";
+        case 'configuration':
+            $textarea[] = 'page_banner';
             $display = true;
             break;
 
-        case "plugin":
-            // If we dont have `$_GET["section"]` we cannot load the editor 
-            if (!isset($_GET["section"])) break;
-            switch ($_GET["section"]) 
+        case 'plugin':
+            // If we dont have `$_GET['section']` we cannot load the editor 
+            if (!isset($_GET['section'])) break;
+            switch ($_GET['section']) 
             {
                 // Define `EditorPlus` plugin
-                case "EditorPlus/admin.php":
-                    $textarea[] = "ep-playground";
+                case 'EditorPlus/admin.php':
+                    $textarea[] = 'ep-playground';
                     $display = true;
                     break;
 
                 // Define `Additional pages` plugin
-                case "AdditionalPages/admin.php":
-                    $textarea[] = "ap_content";
+                case 'AdditionalPages/admin.php':
+                    $textarea[] = 'ap_content';
                     $display = true;
                     break;
 
                 // Define `Personal About` plugin
-                case "PersoAbout/admin.php":
-                    $textarea[] = "perso_about";
+                case 'PersoAbout/admin.php':
+                    $textarea[] = 'perso_about';
                     $display = true;
                     break;
-                case "PersoFooter/admin.php":
-                    $textarea[] = "perso_footer";
+                case 'PersoFooter/admin.php':
+                    $textarea[] = 'perso_footer';
                     $display = true;
                     break;
-                case "Admin_Messages/admin.php":
-                    $textarea[] = "admin_message";
+                case 'Admin_Messages/admin.php':
+                    $textarea[] = 'admin_message';
                     $display = true;
                     break;
 
                 // Define `PWG Stuffs` plugin
-                case "PWG_Stuffs/admin.php":
-                    $textarea[] = "textarea";
+                case 'PWG_Stuffs/admin.php':
+                    $textarea[] = 'textarea';
                     $display = true;
                     break;
 
@@ -135,7 +135,7 @@ function ep_load_editor()
     // Ready to display our editor in defined admin pages
     if($display)
     {
-        ep_display($textarea, $editor, $page["page"]);
+        ep_display($textarea, $editor, $page['page']);
     }
 
 }

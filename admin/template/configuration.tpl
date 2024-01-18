@@ -2,6 +2,11 @@
 {combine_css path="{$EP_PATH}node_modules/quill/dist/quill.snow.css" order=2}
 {combine_css path="{$EP_PATH}admin/vendors/fontello/css/editorplus.css" order=-10}
 {combine_css path="{$EP_PATH}admin/css/editorplus_quill.css" order=1}
+{assign var="helper_gif" value="{$EP_PATH}admin/assets/helper-clear.gif"}
+{if $themeconf['colorscheme'] == 'dark'}
+    {combine_css path="{$EP_PATH}admin/css/plugin_dark.css" order=3}
+    {assign var="helper_gif" value="{$EP_PATH}admin/assets/helper-dark.gif"}
+{/if}
 <section class="ep-container">
     <h2>EditorPlus</h2>
     <div class="ep-config">
@@ -40,13 +45,34 @@
             </div>
             <div class="quill-toolbar">
                 <p>Minify Toolbar (drag items here)</p>
-                <div class="config-quill-toolbar">
-                    <div class="dropzone" id="toolbar-drop"></div>
-                    <span class="expand icon-resize-full"></span>
+                <div class="config-quill-helper">
+                    <div class="config-quill-toolbar">
+                        <div class="dropzone" id="toolbar-drop"></div>
+                        <span class="expand icon-code tiptip" title="Show/Hide Preview"></span>
+                        <span class="expand icon-resize-full tiptip" title="Expand/Shrink Editor"></span>
+                    </div>
+                    <span class="icon-helper icon-help-circled"></span>
+                </div>
+            </div>
+            <div class="ep-quill-helper" id="helper-quill-modal">
+                <div class="ep-quill-helper-content">
+                        <i class="icon-cancel helper-quill-close"></i>
+                        <p class="helper-quill-items">
+                            <span class="config-quill-badge"> <span class="config-quill-icon epicon-bold"></span></span>
+                            <span>Item is available for dragging in the minify toolbar.</span>
+                        </p>
+                        <p class="helper-quill-items">
+                            <span class="config-quill-badge not-sortable"> <span class="config-quill-icon epicon-bold"></span></span>
+                            <span>Item is not available due to space restriction.</span>
+                        </p>
+                        <p class="helper-quill-items">
+                            <span class="config-quill-badge badge-helper"> <span class="config-quill-icon epicon-bold"></span></span>
+                            <span>Item is active in minify toolbar.</span>
+                        </p>
+                        <img src="{$helper_gif}" alt="helper quill gif" :>
                 </div>
             </div>
         </div>
-        <div id="message_status" class=""><i id="message_status_icon" class=""></i> <span id="message_status_content"></span></div>
     </div>
     <div class="ep-fieldset">
         <div class="ep-config-title">
@@ -66,10 +92,8 @@
     </div>
 </section>
 <section class="ep-save">
+    <div class="info-message icon-ok" id="message_status"></div>
     <span class="buttonLike" id="save"><i class="icon-floppy"></i> Save Settings</span>
 </section>
 {combine_script id='config_quill' load='footer' path="{$EP_PATH}admin/js/config_quill.js"}
 {combine_script id='jquery-ui-quill' load='footer' path="{$EP_PATH}admin/vendors/jquery-ui/jquery-ui.js"}
-{footer_script}
-const EP_CONFIG = {$EP_CONFIG|json_encode};
-{/footer_script}
