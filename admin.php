@@ -1,7 +1,7 @@
 <?php
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-global $page, $conf;
+global $page;
 
 // Get current tab
 $page['tab'] = 'configuration';

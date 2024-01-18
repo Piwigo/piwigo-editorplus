@@ -3,6 +3,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 function ep_get_accept_data()
 {
+  // These are all items that can be activated in quill
   $accept_data = [
     'button/ql-bold',
     'button/ql-italic',
