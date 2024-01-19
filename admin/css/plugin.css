@@ -37,7 +37,7 @@ p {
   margin-left: 0;
 }
 .icon-dice-solid {
-    padding-right: 8px;
+  padding-right: 8px;
 }
 .icon-cog-alt {
   padding-right: 4px;
@@ -114,24 +114,6 @@ p {
   display: flex;
   justify-content: flex-end;
   background-color: white;
-}
-.success-msg,
-.error-msg {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 3px 3px 3px 3px;
-}
-.success-msg {
-  color: #270;
-  background-color: #dff2bf;
-}
-.error-msg {
-  color: #d8000c;
-  background-color: #ffbaba;
-}
-.quill-msg {
-  color: #059;
-  background-color: #bef;
 }
 #message_status {
   display: none;
