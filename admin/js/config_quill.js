@@ -140,7 +140,9 @@ $(document).ready(function () {
                 const iframe_ql = $('[id^="ep-playground-quill"]').get(0);
                 const iframe_dom_ql = iframe_ql.contentDocument || iframe_ql.contentWindow.document;
                 
-                EP_CONFIG_EDITOR.config_quill = result.data;
+                if (result.status == 'success') {
+                    EP_CONFIG_EDITOR.config_quill = result.data;
+                }
 
                 drag_and_drop('reset');
                 toggle_toolbar(iframe_dom_ql);
