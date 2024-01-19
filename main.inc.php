@@ -1,8 +1,8 @@
 <?php
 /*
-Version: 1.0
+Version: auto
 Plugin Name: EditorPlus
-Plugin URI: github link
+Plugin URI: auto
 Author: Piwigo team
 Author URI: https://github.com/Piwigo
 Description: WYSIWYG Editor for Piwigo.
