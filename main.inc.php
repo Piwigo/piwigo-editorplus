@@ -11,6 +11,18 @@ Has Settings: true
 
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
+// check root directory
+if (basename(dirname(__FILE__)) != 'editorplus')
+{
+  add_event_handler('init', 'ep_error');
+  function ep_error()
+  {
+    global $page;
+    $page['errors'][] = 'EditorPlus folder name is incorrect, uninstall the plugin and rename it to "editorplus"';
+  }
+  return;
+}
+
 // +-----------------------------------------------------------------------+
 // | Define plugin constants                                               |
 // +-----------------------------------------------------------------------+
@@ -34,7 +46,8 @@ add_event_handler('init', 'ep_init');
 $ws_file = EP_PATH . 'include/ws_functions.inc.php';
 add_event_handler('ws_add_methods', 'ep_quill_add_methods', EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 
-if (defined('IN_ADMIN')) {
-    // Include EditorPlus
-    include(EP_PATH . 'editorplus.php');
+if (defined('IN_ADMIN'))
+{
+  // Include EditorPlus
+  include(EP_PATH . 'editorplus.php');
 }
