@@ -76,7 +76,7 @@ function ep_load_editor()
             switch ($_GET['section']) 
             {
                 // Define `EditorPlus` plugin
-                case 'EditorPlus/admin.php':
+                case EP_ID . '/admin.php':
                     $textarea[] = 'ep-playground';
                     $display = true;
                     break;
