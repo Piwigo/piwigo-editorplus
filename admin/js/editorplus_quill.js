@@ -104,13 +104,13 @@ const example_textarea_preview = `
  * @param textarea the textarea jquery object
  * @returns quill_id, Quill, iframe_dom, quill
  */
-function create_iframe_quill(textarea) {
+function create_iframe_quill(textarea, add_height_textarea) {
     try {
         // Define iframe container constante
         const quill_id = textarea.attr('id') ? textarea.attr('id') + '-quill' : textarea.attr('name') + '-quill';
         const unique_iframe = new Date().getTime();  // Each time the page is loaded, we assign a new id to the iframe. This trick allows Safari not to cache the iframe (which causes problems).
         const quill_iframe_id = quill_id + '-iframe' + unique_iframe;
-        const textarea_height = textarea.innerHeight() + 150; // + 150 is a good size for editor content
+        const textarea_height = textarea.innerHeight() + add_height_textarea;
         const quill_iframe = example_quill_container
         .replace(/%CONTAINER_ID%/g, 'container-' + quill_iframe_id)
         .replace(/%QUILL_IFRAME_ID%/g, quill_iframe_id)
@@ -437,9 +437,13 @@ $(document).ready(function () {
         if (textarea.length > 0 && textarea.is('textarea')) {
 
             // On the album page, we remove the expand button from the description to leave the EditorPlus one
-            if (EP_CURRENT_PAGE == 'album') { $('#desc-zoom-square').css('display', 'none'); }
+            let add_height_textarea = 150; // + 150 is a good size for editor content
+            if (EP_CURRENT_PAGE == 'album') { 
+                $('#desc-zoom-square').css('display', 'none'); 
+                add_height_textarea = 30; // + 30 is a good size for editor content in album page
+            }
             // create iframe
-            const iframe = create_iframe_quill(textarea);
+            const iframe = create_iframe_quill(textarea, add_height_textarea);
 
             // We use an "addEventListener" which is triggered when the iframe dom is loaded and not "iframe.onload", 
             // because Safari handles onload differently.
