@@ -1,0 +1,35 @@
+<?php
+
+$lang['EditorPlus'] = 'EditorPlus';
+$lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'Avec le mode miniature d\'EditorPlus, vous pouvez choisir quelques éléments à ajouter à la barre d\'outils.';
+$lang['To do this, drag and drop items into the minify toolbar.'] = 'Pour ce faire, glissez-déposez des éléments dans la barre d\'outils.';
+$lang['Due to the space restrictions you can\'t choose them all.'] = 'En raison des restrictions d\'espace, vous ne pouvez pas tous les choisir.';
+$lang['Minify Toolbar (drag items here)'] = 'Barre d\'outils (faire glisser les éléments ici)';
+$lang['Playground'] = 'Terrain de jeux';
+$lang['This is what the editor looks like throughout Piwigo.'] = 'Voici à quoi ressemble l\'éditeur dans Piwigo.';
+$lang['Here you can play with it and see its features'] = 'Ici, vous pouvez jouer avec et voir ses fonctionnalités';
+$lang['Type something here'] = 'Saisissez quelque chose ici';
+$lang['Item is available for dragging in the minify toolbar.'] = 'L\'élément est disponible pour être déplacé dans la barre d\'outils.';
+$lang['Item is not available due to space restriction.'] = 'L\'élément n\'est pas disponible en raison d\'un manque d\'espace.';
+$lang['Item is active in minify toolbar.'] = 'L\'élément est actif dans la barre d\'outils.';
+$lang['Bold'] = 'Gras';
+$lang['Italic'] = 'Italique';
+$lang['Underline'] = 'Souligné';
+$lang['Strike'] = 'Barré';
+$lang['Quote'] = 'Citation';
+$lang['Heading'] = 'Titre';
+$lang['Sub / Up'] = 'Indice / Exposant';
+$lang['Direction'] = 'Direction';
+$lang['RTL'] = 'De droite à gauche';
+$lang['Font size'] = 'Taille de la police';
+$lang['Heading list'] = 'Liste des titres';
+$lang['Background color'] = 'Couleur d\'arrière-plan';
+$lang['Font'] = 'Police';
+$lang['Align'] = 'Aligner';
+$lang['Link'] = 'Lien';
+$lang['Clean'] = 'Nettoyer';
+$lang['Color'] = 'Couleur';
+$lang['EPImage'] = 'Image';
+$lang['Video'] = 'Vidéo';
+$lang['Show/Hide Preview'] = 'Afficher/Masquer l\'aperçu';
+$lang['Expand/Shrink Editor'] = 'Agrandir/Réduire l\'éditeur';

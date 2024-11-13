@@ -1,0 +1,35 @@
+<?php
+
+$lang['EditorPlus'] = 'EditorPlus';
+$lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.';
+$lang['To do this, drag and drop items into the minify toolbar.'] = 'To do this, drag and drop items into the minify toolbar.';
+$lang['Due to the space restrictions you can\'t choose them all.'] = 'Due to the space restrictions you can\'t choose them all.';
+$lang['Minify Toolbar (drag items here)'] = 'Minify Toolbar (drag items here)';
+$lang['Playground'] = 'Playground';
+$lang['This is what the editor looks like throughout Piwigo.'] = 'This is what the editor looks like throughout Piwigo.';
+$lang['Here you can play with it and see its features'] = 'Here you can play with it and see its features';
+$lang['Type something here'] = 'Type something here';
+$lang['Item is available for dragging in the minify toolbar.'] = 'Item is available for dragging in the minify toolbar.';
+$lang['Item is not available due to space restriction.'] = 'Item is not available due to space restriction.';
+$lang['Item is active in minify toolbar.'] = 'Item is active in minify toolbar.';
+$lang['Bold'] = 'Bold';
+$lang['Italic'] = 'Italic';
+$lang['Underline'] = 'Underline';
+$lang['Strike'] = 'Strike';
+$lang['Quote'] = 'Quote';
+$lang['Heading'] = 'Heading';
+$lang['Sub / Up'] = 'Sub / Up';
+$lang['Direction'] = 'Direction';
+$lang['RTL'] = 'RTL';
+$lang['Font size'] = 'Font size';
+$lang['Heading list'] = 'Heading list';
+$lang['Background color'] = 'Background colour';
+$lang['Font'] = 'Font';
+$lang['Align'] = 'Align';
+$lang['Link'] = 'Link';
+$lang['Clean'] = 'Clean';
+$lang['Color'] = 'Colour';
+$lang['EPImage'] = 'Image';
+$lang['Video'] = 'Video';
+$lang['Show/Hide Preview'] = 'Show/Hide Preview';
+$lang['Expand/Shrink Editor'] = 'Expand/Shrink Editor';

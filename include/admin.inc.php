@@ -10,6 +10,7 @@ function ep_init()
 
     // prepare plugin configuration
     $conf['editorplus'] = safe_unserialize($conf['editorplus']);
+    load_language('plugin.lang', EP_PATH);
 }
 
 /**
