@@ -1,11 +1,12 @@
 <?php
 
 $lang['EditorPlus'] = 'EditorPlus';
+$lang['Choose an editor'] = 'Choose an editor';
 $lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.';
 $lang['To do this, drag and drop items into the minify toolbar.'] = 'To do this, drag and drop items into the minify toolbar.';
 $lang['Due to the space restrictions you can\'t choose them all.'] = 'Due to the space restrictions you can\'t choose them all.';
 $lang['Minify Toolbar (drag items here)'] = 'Minify Toolbar (drag items here)';
-$lang['Playground'] = 'Playground';
+$lang['Sandbox'] = 'Sandbox';
 $lang['This is what the editor looks like throughout Piwigo.'] = 'This is what the editor looks like throughout Piwigo.';
 $lang['Here you can play with it and see its features'] = 'Here you can play with it and see its features';
 $lang['Type something here'] = 'Type something here';
