@@ -1,0 +1,45 @@
+:root {
+  --ck-color-focus-border: #ffa646;
+}
+
+body {
+  margin: 0;
+}
+
+.ck-powered-by {
+  display: none;
+}
+
+.ck-editor {
+  max-width: 100%;
+}
+
+.ck-source-editing-area textarea {
+  left: 0;
+  overflow-y: auto;
+}
+
+.fullscreen {
+  min-height: calc(100% - 45px);
+}
+
+.ck-content {
+  min-height: calc(100% - 45px);
+}
+
+.ck-dropdown__panel:not(.ck-toolbar__grouped-dropdown .ck-dropdown__panel) {
+  overflow-y: auto !important;
+  max-height: 55vh !important;
+}
+
+.ck-toolbar__grouped-dropdown .ck-dropdown__panel {
+  max-height: 55vh !important;
+}
+
+.ck-source-editing-area {
+  height: calc(100% - 45px);
+}
+
+.hidden-button {
+  visibility: hidden;
+}

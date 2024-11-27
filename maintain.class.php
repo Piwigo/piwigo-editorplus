@@ -4,7 +4,7 @@ defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 class editorplus_maintain extends PluginMaintain
 {
   private $default_conf = array(
-    'editor' => 'quill',
+    'editor' => 'ckeditor',
     'config_quill' => [
       'button/ql-bold',
       'button/ql-italic',

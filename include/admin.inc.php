@@ -21,7 +21,7 @@ function ep_init()
  */
 function ep_display($textarea, $editor, $current_page)
 {
-    global $template, $conf;
+    global $template, $conf, $user;
 
     // set template and assign variable
     $template->set_filename('editorplus', EP_REALPATH . '/admin/template/editorplus_' . $editor . '.tpl');
@@ -32,6 +32,7 @@ function ep_display($textarea, $editor, $current_page)
         'EP_EDITOR' => $editor,
         'EP_PAGE' => $current_page,
         'EP_CONFIG_EDITOR' => $conf['editorplus'],
+        'EP_USER_LANGUAGE' => $user['language']
     ));
     $template->parse('editorplus');
 }
@@ -42,13 +43,13 @@ function ep_display($textarea, $editor, $current_page)
  */
 function ep_load_editor()
 {
-    global $page;
+    global $page, $conf;
 
     // If we dont have `$page` we cannot load the editor 
     if (!isset($page['page'])) return;
 
-    // For later if we want to add an another WYSIWYG we did it here
-    $editor = 'quill';
+    // Choosen editor
+    $editor = $conf['editorplus']['editor'];
 
     // Here we define the pages that will load the EditorPlus plugin and the textarea id 
     $textarea = array();
@@ -78,8 +79,9 @@ function ep_load_editor()
             {
                 // Define `EditorPlus` plugin
                 case EP_ID . '/admin.php':
-                    $textarea[] = 'ep-playground';
+                    $textarea = ['ep-playground', 'ep-playground-ckeditor'];
                     $display = true;
+                    $editor = 'config';
                     break;
 
                 // Define `Additional pages` plugin

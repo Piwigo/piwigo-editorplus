@@ -5,6 +5,45 @@ p {
   margin: 0 !important;
 }
 
+.warning-change {
+  margin: 30px 0 !important;
+  color: #EB3D33;
+  text-align: start;
+}
+
+/* Choose editor CSS */
+.ep-editor {
+  display: flex;
+  margin-top: 30px;
+}
+.ep-editor p {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #eee;
+  color: black;
+}
+.ep-editor p:hover {
+  background-color: #ccc;
+}
+.ep-editor .choosen {
+  transition: 0.2s ease;
+  background-color: #FFA646;
+  color: white;
+  pointer-events: none;
+}
+.ep-editor .choosen:hover {
+  background-color: #FFA646;
+}
+.ep-editor :first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.ep-editor :last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 /* Configuration CSS */
 .ep-container {
   margin: 20px;
@@ -102,7 +141,7 @@ p {
   color: black;
 }
 .quill-toolbar {
-  margin-bottom: 20px;
+  margin-bottom: 45px;
 }
 .ep-save {
   width: 100%;
@@ -198,9 +237,18 @@ p {
 
 /* Playground CSS */
 .ep-content {
-  max-width: 450px;
   margin-top: 10px;
+}
+.config-quill-container .ep-content {
+  max-width: 450px;
+}
+.config-ckeditor-container .ep-content {
+  max-width: 700px;
 }
 .ep-fieldset {
   text-align: left;
+}
+
+.config-ckeditor-container .ep-fieldset {
+  margin-top: 45px;
 }
