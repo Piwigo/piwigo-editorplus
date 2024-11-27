@@ -1,7 +1,7 @@
 # EditorPlus
 EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of defined textareas.
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/LintyDev/piwigo-editorplus/main?label=editorplus) ![Static Badge](https://img.shields.io/badge/v14.1.0-pwg?label=piwigo) ![GitHub issues](https://img.shields.io/github/issues/LintyDev/piwigo-editorplus?color=yellow)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/LintyDev/piwigo-editorplus/main?label=editorplus) ![Static Badge](https://img.shields.io/badge/v15.1.0-pwg?label=piwigo) ![GitHub issues](https://img.shields.io/github/issues/LintyDev/piwigo-editorplus?color=yellow)
 
 ## Summary
 - [Installation](#installation)
@@ -14,7 +14,7 @@ EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of 
 ## Installation
 ### For Users
 1. **Download the Latest Release**:
-   - Go to the [Releases page](https://github.com/LintyDev/piwigo-editorplus/releases) of the EditorPlus GitHub repository.
+   - Go to the [Releases page](https://piwigo.org/ext/index.php?eid=972) of the EditorPlus official page.
    - Download the latest release's ZIP file.
 2. **Installation**:
    - Unzip the downloaded file.
@@ -27,7 +27,7 @@ EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of 
 ### For Developers
 1. **Clone the Repository**:
    - Clone the EditorPlus repository to your local machine using:
-     ```git clone https://github.com/LintyDev/piwigo-editorplus.git```
+     ```git clone https://github.com/Piwigo/piwigo-editorplus.git```
 2. **Install Dependencies**:
    - Navigate to the cloned directory and run:
      ```npm install```
@@ -38,7 +38,7 @@ EditorPlus is a plugin for Piwigo. This plugin add a WYSIWYG editor to a set of 
 
 ## Features
 - **WYSIWYG Editor**: Integrate a What You See Is What You Get editor into your Piwigo gallery, enhancing the user experience for content creation and editing.
-- **Powered by Quill V2**: Utilizes the latest version of Quill, a powerful and modern rich text editor, ensuring a smooth and feature-rich editing experience.
+- **Powered by**: Quill v2 & CKEditor 5.
 - **Customizable Toolbars**: Tailor the editor toolbars to fit the specific needs of your piwigo, choosing from a variety of formatting options.
 - **Easy Integration**: Seamlessly integrates with Piwigo, allowing for a quick and hassle-free setup.
 - **Extensible**: Built to be extensible, enabling further customization and extension of functionality as needed.
