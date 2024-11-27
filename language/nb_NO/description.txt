@@ -1,0 +1,1 @@
+WYSIWYG Redigeringsprogram for Piwigo.
