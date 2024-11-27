@@ -34,3 +34,4 @@ $lang['EPImage'] = 'Image';
 $lang['Video'] = 'Vidéo';
 $lang['Show/Hide Preview'] = 'Afficher/Masquer l\'aperçu';
 $lang['Expand/Shrink Editor'] = 'Agrandir/Réduire l\'éditeur';
+$lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Attention : Si vous changez d\'éditeur, certains éléments de mise en forme ne seront pas compatibles, ce qui peut entraîner une perte de style dans vos contenus.';
