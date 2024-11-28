@@ -1,7 +1,7 @@
 <?php
 if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
-global $page;
+global $page, $conf;
 
 // Get current tab
 $page['tab'] = 'configuration';
@@ -22,5 +22,6 @@ $template->assign(array(
 ));
 
 // Send template content
-$template->set_filename('editorplus_content', EP_REALPATH . '/admin/template/configuration.tpl');
+$template_path = $conf['allow_html_descriptions'] ? '/admin/template/configuration.tpl' : '/admin/template/editorplus_wrong.tpl';
+$template->set_filename('editorplus_content', EP_REALPATH . $template_path);
 $template->assign_var_from_handle('ADMIN_CONTENT', 'editorplus_content');

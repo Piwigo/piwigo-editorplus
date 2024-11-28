@@ -121,6 +121,11 @@ function ep_load_editor()
             break;
     }
 
+    if (!$conf['allow_html_descriptions'])
+    {
+        return;
+    }
+
     // Ready to display our editor in defined admin pages
     if($display)
     {
