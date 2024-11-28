@@ -39,3 +39,4 @@ $lang['Heading list'] = '标题列表';
 $lang['Here you can play with it and see its features'] = '您可以在这里试用并查看其功能';
 $lang['Italic'] = '斜体';
 $lang['Item is not available due to space restriction.'] = '由于空间限制，项目不可用。';
+$lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = '警告：如果您更换编辑器，某些格式元素可能不兼容，这可能会导致内容样式的丢失。';
