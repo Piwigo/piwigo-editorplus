@@ -35,3 +35,4 @@ $lang['Video'] = 'Video';
 $lang['Show/Hide Preview'] = 'Show/Hide Preview';
 $lang['Expand/Shrink Editor'] = 'Expand/Shrink Editor';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'The configuration %s is disabled. To use EditorPlus you must enable this configuration.';
