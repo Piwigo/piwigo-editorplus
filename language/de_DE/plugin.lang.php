@@ -39,3 +39,4 @@ $lang['Direction'] = 'Richtung';
 $lang['Align'] = 'Ausrichten';
 $lang['Background color'] = 'Hintergrundfarbe';
 $lang['Choose an editor'] = 'Wählen Sie einen Editor';
+$lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Achtung! Wenn Sie den Editor wechseln, werden einige Formatierungselemente nicht kompatibel sein, was zu einem Stilverlust in Ihrem Inhalt führen kann.';
