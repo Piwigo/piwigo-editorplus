@@ -1,0 +1,1 @@
+Piwigo için WYSIWYG (Ne Görüyorsan Onu Alırsın) düzenleyicisi.
