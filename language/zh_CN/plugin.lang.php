@@ -40,3 +40,4 @@ $lang['Here you can play with it and see its features'] = '您可以在这里试
 $lang['Italic'] = '斜体';
 $lang['Item is not available due to space restriction.'] = '由于空间限制，项目不可用。';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = '警告：如果您更换编辑器，某些格式元素可能不兼容，这可能会导致内容样式的丢失。';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = '配置 %s 已禁用。要使用 EditorPlus，您必须启用此配置。';
