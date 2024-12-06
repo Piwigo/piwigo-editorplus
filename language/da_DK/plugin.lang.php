@@ -40,3 +40,4 @@ $lang['Italic'] = 'Kursiv';
 $lang['Item is active in minify toolbar.'] = 'Emnet er aktivt i minify-værktøjslinjen.';
 $lang['Item is available for dragging in the minify toolbar.'] = 'Emnet er tilgængeligt til at trække i minify-værktøjslinjen.';
 $lang['Item is not available due to space restriction.'] = 'Emnet er ikke tilgængeligt pga. pladsbegrænsninger.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'Opsætningen %s er deaktiveret. For at benytte EditorPlus, skal du aktivere denne opsætning.';
