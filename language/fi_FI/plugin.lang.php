@@ -39,3 +39,5 @@ $lang['Direction'] = 'Suunta';
 $lang['EPImage'] = 'Kuva';
 $lang['EditorPlus'] = 'EditorPlus';
 $lang['Font'] = 'Fontti';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'Asetus %s on kytketty pois päältä. Sen on oltava päällä EditorPlussaa käyttääksesi.';
+$lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Varoitus: Jos vaihdat editoria, jotkut muotoilut eivät ole yhteensopivia, mistä saattaa seurata tyylien katoaminen sisällöstäsi.';
