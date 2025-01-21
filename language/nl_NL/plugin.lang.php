@@ -40,3 +40,4 @@ $lang['Underline'] = 'Onderstreep';
 $lang['Video'] = 'Video';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Waarschuwing: Als u van editor verandert, zijn sommige opmaakelementen niet compatibel. Dit kan leiden tot stijlverlies in uw content.';
 $lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'Met de verkleiningsmodus (klein scherm) van EditorPlus kunt u een paar items selecteren die u aan de werkbalk wilt toevoegen.';
+$lang['Strike'] = 'klik';
