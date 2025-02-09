@@ -40,3 +40,4 @@ $lang['Item is active in minify toolbar.'] = 'Atriði er virkt í minnka tækjas
 $lang['Item is available for dragging in the minify toolbar.'] = 'Hlutur er tiltækur til að draga í minnka tækjastikunni.';
 $lang['Item is not available due to space restriction.'] = 'Varan er ekki fáanleg vegna plásstakmarkana.';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Viðvörun: Ef þú skiptir um ritil þá munu sumir sniðþættir ekki vera samhæfðir, sem getur leitt til taps á stíl í efninu þínu.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'Uppsetningin %s er óvirk. Til að nota EditorPlus verður þú að virkja þessa stillingu.';
