@@ -40,3 +40,4 @@ $lang['Italic'] = 'Corsivo';
 $lang['Item is active in minify toolbar.'] = 'L\'elemento è attivo nella barra degli strumenti minimizzata.';
 $lang['Item is available for dragging in the minify toolbar.'] = 'L\'elemento è disponibile per il trascinamento nella barra degli strumenti di minimizzazione.';
 $lang['Item is not available due to space restriction.'] = 'L\'elemento non è disponibile a causa di limitazioni di spazio.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'La configurazione %s è disabilitata. Per usare EditorPlus devi abilitare questa configurazione.';
