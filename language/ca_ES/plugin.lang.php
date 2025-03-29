@@ -40,3 +40,4 @@ $lang['Underline'] = 'Sots-ratllat';
 $lang['Video'] = 'Vídeo';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Advertiment: Si canvieu d\'editor, alguns elements de format no seran compatibles, cosa que podria resultar en la pèrdua de l\'estil del vostre contingut.';
 $lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'Amb el mode de minimització (pantalla petita) de l\'EditorPlus, podeu escollir alguns elements per afegir a la barra d\'eines.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'La configuració %s està inhabilitada. Per utilitzar EditorPlus heu d\'habilitar-la.';
