@@ -40,3 +40,4 @@ $lang['Underline'] = 'Subrayado';
 $lang['Video'] = 'Vídeo';
 $lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Advertencia: Si cambia de editor, algunos elementos de formato no serán compatibles, lo que podría resultar en la pérdida del estilo de su contenido.';
 $lang['With EditorPlus minify mode (small display), you can choose a few items to add to the toolbar.'] = 'Con el modo de minimización (pantalla pequeña) de EditorPlus, puede elegir algunos elementos que añadir a la barra de herramientas.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'La configuracion %s esta inhabilitada. Para usar EditorPlus debe habilitarla.';
