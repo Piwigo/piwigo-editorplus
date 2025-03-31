@@ -40,3 +40,4 @@ $lang['Choose an editor'] = '選擇編輯器';
 $lang['Bold'] = '粗體';
 $lang['Background color'] = '背景色彩';
 $lang['Align'] = '對齊';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = '組態設定 %s 已被禁用。您必須啟用這項組態設定才能使用 EditorPlus。';
