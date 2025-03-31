@@ -214,6 +214,7 @@ function epInitCKEditor(cT) {
       page: EP_CURRENT_PAGE ?? 'none',
     },
   }).then((editor) => {
+    window.editor = editor;
     const element = editor.ui.view.element;
     if ("album" == EP_CURRENT_PAGE) {
       element.querySelector('.ck-toolbar__grouped-dropdown').classList.add('hidden-button');

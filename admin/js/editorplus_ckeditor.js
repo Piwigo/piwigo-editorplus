@@ -32,6 +32,7 @@ $(function () {
     $('#desc-zoom-square').css('display', 'none'); 
   }
   EP_TEXTAREA_CKEDITOR.forEach((selector) => {
+    epShowHideTextArea(selector, `ck-${EP_TEXTAREA_CKEDITOR}`, EP_SHOW_HIDE);
     const textarea = $(`#${selector}`);
     if (!textarea.length) return;
     const iframe = document.createElement('iframe');

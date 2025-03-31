@@ -1,7 +1,8 @@
 {combine_css path="{$EP_PATH}admin/css/plugin.css" order=0}
 {combine_css path="{$EP_PATH}node_modules/quill/dist/quill.snow.css" order=2}
 {combine_css path="{$EP_PATH}admin/vendors/fontello/css/editorplus.css" order=-10}
-{combine_css path="{$EP_PATH}admin/css/editorplus_quill.css" order=1}
+{combine_script id='editorplus_{$EP_EDITOR}' load='footer' path="{$EP_PATH}admin/js/editorplus_{$EP_EDITOR}.js"}
+{combine_css path="{$EP_PATH}admin/css/editorplus_common.css" order=1}
 {assign var="helper_gif" value="{$EP_PATH}admin/assets/helper-clear.gif"}
 {if $themeconf['colorscheme'] == 'dark'}
     {combine_css path="{$EP_PATH}admin/css/plugin_dark.css" order=3}
