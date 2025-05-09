@@ -1,0 +1,1 @@
+Edytor WYSIWYG dla Piwigo.
