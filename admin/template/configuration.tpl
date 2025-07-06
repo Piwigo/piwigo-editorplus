@@ -9,7 +9,6 @@
     {assign var="helper_gif" value="{$EP_PATH}admin/assets/helper-dark.gif"}
 {/if}
 <section class="ep-container">
-    <h2>{"EditorPlus"|translate}</h2>
     <div class="ep-config">
         <div class="ep-config-title">
             <div class="ep-icon-wrapper">

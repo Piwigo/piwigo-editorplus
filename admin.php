@@ -24,7 +24,13 @@ $template->assign(array(
     'EP_PATH' => EP_PATH,
     'EP_REALPATH' => EP_REALPATH,
     'EP_ADMIN' => EP_ADMIN,
+    'ADMIN_PAGE_TITLE' => 'EditorPlus'
 ));
+
+if (!$conf['allow_html_descriptions'])
+{
+  $page['errors'][] = l10n('The configuration %s is disabled. To use EditorPlus you must enable this configuration.', '$conf[\'allow_html_descriptions\']');
+}
 
 // Send template content
 $template_path = $conf['allow_html_descriptions'] ? '/admin/template/configuration.tpl' : '/admin/template/editorplus_wrong.tpl';
