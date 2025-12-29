@@ -39,3 +39,5 @@ $lang['Heading list'] = 'Overskriftsliste';
 $lang['Here you can play with it and see its features'] = 'Her kan du leke med den og se funksjonene';
 $lang['Italic'] = 'Italic';
 $lang['Item is not available due to space restriction.'] = 'Gjenstanden er ikke tilgjengelig på grunn av plassbegrensning.';
+$lang['The configuration %s is disabled. To use EditorPlus you must enable this configuration.'] = 'Konfigurasjonen %s er deaktivert. For å bruke EditorPlus må du aktivere denne konfigurasjonen.';
+$lang['Warning: If you change editor, some formatting elements will not be compatible, which may result in a loss of style in your content.'] = 'Advarsel: Hvis du bytter redigeringsprogram, vil enkelte formateringselementer ikke være kompatible, noe som kan føre til tap av stil i innholdet ditt.';
