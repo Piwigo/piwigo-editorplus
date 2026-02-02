@@ -1,0 +1,1 @@
+Piwigo용 WYSIWYG 편집기.
